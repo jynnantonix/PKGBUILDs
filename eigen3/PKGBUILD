@@ -1,4 +1,5 @@
-# Maintainer: Kringel
+# Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
+# Contributor: Kringel
 # This PKGBUILD is a modified version of eigen 2.x in extra/eigen
 
 pkgname=eigen3
@@ -13,15 +14,14 @@ source=("${pkgname}-${pkgver}.tar.bz2::http://bitbucket.org/eigen/eigen/get/${pk
 sha1sums=('b788877a4d4b1685ee2a5d738a65b04b6a21ff3d')
 
 build() {
-  mkdir -p "$srcdir"/build
-  cd "$srcdir"/build
-  cmake ../eigen-eigen-* \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DCMAKE_INSTALL_PREFIX=/usr
-  make
+    mkdir -p "$srcdir"/build
+    cd "$srcdir"/build
+    cmake ../eigen-eigen-* \
+        -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=/usr
 }
 
 package() {
-  cd "$srcdir"/build
-  make DESTDIR="$pkgdir" install
+    cd "$srcdir"/build
+    make DESTDIR="$pkgdir" install
 }
