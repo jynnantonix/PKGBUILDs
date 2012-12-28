@@ -30,7 +30,7 @@ fi
 
 build() {
     if [[ "${_build_doc}" == "ON" ]]; then
-	patch -Np0 -i doc-install.patch
+	patch -Np0 -i "${srcdir}"/doc-install.patch
     fi
 
     mkdir -p "${srcdir}"/build
