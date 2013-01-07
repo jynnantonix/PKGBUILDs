@@ -1,0 +1,34 @@
+# Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
+# Contributer: Doug Newgard <scimmia22 at outlook dot com>
+# Contributer: Stéphane Gaudreault <stephane.gaudreault@gmail.com>
+
+pkgname=toluapp
+_pkgname=tolua++
+pkgver=1.0.93
+pkgrel=6
+pkgdesc="Tool to integrate C/C++ code with Lua"
+arch=('i686' 'x86_64')
+url="http://www.codenix.com/~tolua"
+license=('MIT')
+depends=('lua51')
+makedepends=('scons')
+source=(http://www.codenix.com/~tolua/${_pkgname}-${pkgver}.tar.bz2
+    config_linux.py)
+md5sums=('100aa6907b8108582080b37d79c0afd7'
+    '69ad5067084cec2924f172bb04700da6')
+
+build() {
+    cd "${srcdir}"/${_pkgname}-${pkgver}
+    cp ../config_linux.py "${srcdir}"/${_pkgname}-${pkgver}
+
+    scons all
+}
+
+package() {
+    cd "${srcdir}"/${_pkgname}-${pkgver}
+    scons prefix="${pkgdir}"/usr install
+
+    # install license files
+    install -Dm644 "${srcdir}"/${_pkgname}-${pkgver}/COPYRIGHT \
+        "{$pkgdir}"/usr/share/licenses/${pkgname}/COPYRIGHT
+}
