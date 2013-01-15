@@ -34,7 +34,7 @@ build() {
     
     msg "Applying patches..."
     cd "${srcdir}/${_gitname}"
-    git apply ../pcmanfm-automake-version.patch
+    git apply ../automake-version.patch
     git commit --all -m "Fixed detection of automake version"
     
     git apply ../obsolete-macro.patch
