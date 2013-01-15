@@ -13,7 +13,7 @@ install=burning-arch.install
 source=("http://sourceforge.net/projects/slimburningarch/files/${pkgver}/${pkgname}-${pkgver}.tar.gz")
 md5sums=('2c7444637b2ad05ac28470ea0419b3a1')
 
-build() {
+package() {
   cd "${srcdir}"/${pkgname}-${pkgver}
   
   install -m 644 -D background.png "${pkgdir}"/usr/share/slim/themes/burning-arch/background.png
