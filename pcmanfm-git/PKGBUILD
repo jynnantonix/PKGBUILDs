@@ -27,25 +27,21 @@ build() {
   msg "Connecting to $_gitroot..."
   if [[ -d $_gitname ]]; then
     cd "${srcdir}/${_gitname}" && git pull origin
-    msg2 "Local files updated"
+    msg "Local files updated"
   else
     git clone $_gitroot 
-    msg2 "Git checkout done"
-    
-    msg "Applying patches..."
-    cd "${srcdir}/${_gitname}"
-    git apply ../automake-version.patch
-    git commit --all -m "Fixed detection of automake version"
-    
-    git apply ../obsolete-macro.patch
-    git commit --all -m "Removed obsolete macro"
+    msg "Git checkout done"
   fi
   
-  cd "${srcdir}"
-  rm -rf ${_gitname}-build
-  git clone $_gitname $_gitname-build
+  [[ -d "${srcdir}/${_gitname}-build" ]] && rm -rf "${srcdir}/${_gitname}-build"
+  git clone "${srcdir}/${_gitname}" "${srcdir}/${_gitname}-build"
+  
   cd "${srcdir}/${_gitname}-build"
 
+  msg "Applying patches..."
+  git apply ../automake-version.patch
+  git apply ../obsolete-macro.patch
+    
   msg "Starting make..."
   ./autogen.sh
   ./configure --prefix=/usr --sysconfdir=/etc
