@@ -1,0 +1,42 @@
+# Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
+# Contributor: Allan McRae <allan@archlinux.org>
+
+pkgname=mbpfan-git
+pkgver=20130207
+pkgrel=1
+pkgdesc="Automatically adjust the fan on a MacBook Pro"
+arch=('i686' 'x86_64')
+url="https://github.com/jynnantonix/mbpfan"
+license=('GPL3')
+makedepends=('git')
+depends=('gcc-libs')
+provides=('mbpfan')
+conflicts=('mbpfan')
+changelog=CHANGELOG
+
+_gitroot="git://github.com/jynnantonix/mbpfan.git"
+_gitname="mbpfan"
+
+build() {
+  msg "Connecting to GIT server...."
+
+  if [[ -d $_gitname ]] ; then
+    cd "$_gitname" && git pull origin
+    msg "The local files are updated."
+  else
+    git clone "$_gitroot" "$_gitname"
+  fi
+
+  msg "GIT checkout done or server timeout"
+  msg "Starting make..."
+
+  [[ -d "${srcdir}/$_gitname-build" ]] && rm -rf "${srcdir}/$_gitname-build"
+  git clone "${srcdir}/$_gitname" "${srcdir}/$_gitname-build"
+  cd "${srcdir}/$_gitname-build"
+
+  make
+}
+
+package() {
+  make -C "${srcdir}/$_gitname-build" DESTDIR="${pkgdir}" install
+}
