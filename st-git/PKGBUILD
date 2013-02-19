@@ -1,0 +1,52 @@
+# Maintainer: Gaetan Bisson <bisson@archlinux.org>
+# Contributor: Scytrin dai Kinthra <scytrin@gmail.com>
+
+pkgname=st-git
+epoch=1
+pkgver=20130218
+pkgrel=1
+pkgdesc='Simple virtual terminal emulator for X'
+url='http://git.suckless.org/st/'
+license=('MIT')
+depends=('libxext' 'libxft')
+makedepends=('git' 'ncurses')
+arch=('i686' 'x86_64' 'armv7h')
+provides=('st')
+conflicts=('st')
+replaces=('st-hg')
+source=( config.h )
+md5sums=('d8c4d2164030167d062911fb27cb04e1')
+
+_gitroot='http://git.suckless.org/st/'
+_gitname='st'
+
+build() {
+    cd "${srcdir}"
+    
+    if [[ -d $_gitname ]] ; then
+	cd "$_gitname" && git pull origin
+	msg "The local files are updated."
+    else
+	git clone "$_gitroot" "$_gitname"
+    fi
+    
+    msg "GIT checkout done or server timeout"
+    msg "Starting make..."
+
+    rm -rf "$srcdir/$_gitname-build"
+    git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
+    cd "$srcdir/$_gitname-build"
+
+    cp "${srcdir}/config.h" config.h
+    sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
+    sed -i 's/^CFLAGS =/CFLAGS +=/g' config.mk
+    sed -i 's/^LDFLAGS =/LDFLAGS +=/g' config.mk
+    make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+}
+
+package() {
+    cd "$srcdir/$_gitname-build"
+    make PREFIX=/usr DESTDIR="${pkgdir}" install 
+    install -m644 -D LICENSE "$pkgdir/usr/share/licenses/$_pkgname/LICENSE"
+    install -m644 -D README "$pkgdir/usr/share/doc/$_pkgname/README"
+}

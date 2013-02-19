@@ -1,0 +1,50 @@
+# Contributor: totoloco <totoloco at gmail dot com>
+
+pkgname=surf-git
+_pkgname=surf
+pkgver=20130218
+pkgrel=1
+pkgdesc="A simple webbrowser which is based on webkit/gtk+"
+url="http://surf.suckless.org"
+license=("MIT/X")
+arch=("i686" "x86_64")
+depends=("gtk2" "webkitgtk2")
+makedepends=("pkgconfig" "git" "xorg-utils")
+conflicts=("surf")
+provides=("surf")
+source=( config.h )
+md5sums=('8ddf6244dece90d81b1d3c0b4f9142e3')
+
+_gitroot="http://git.suckless.org/surf"
+_gitname="surf"
+
+build() {
+    cd "${srcdir}"
+    
+    if [[ -d $_gitname ]] ; then
+	cd "$_gitname" && git pull origin
+	msg "The local files are updated."
+    else
+	git clone "$_gitroot" "$_gitname"
+    fi
+    
+    msg "GIT checkout done or server timeout"
+    msg "Starting make..."
+
+    rm -rf "$srcdir/$_gitname-build"
+    git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
+    cd "$srcdir/$_gitname-build"
+
+    cp "${srcdir}/config.h" config.h
+    sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
+    sed -i 's/^CFLAGS = -std/CFLAGS += -std/g' config.mk
+    sed -i 's/^LDFLAGS =/LDFLAGS +=/g' config.mk
+    make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+}
+
+package() {
+    cd "$srcdir/$_gitname-build"
+    make PREFIX=/usr DESTDIR="${pkgdir}" install 
+    install -m644 -D LICENSE "$pkgdir/usr/share/licenses/$_pkgname/LICENSE"
+    install -m644 -D README "$pkgdir/usr/share/doc/$_pkgname/README"
+}
