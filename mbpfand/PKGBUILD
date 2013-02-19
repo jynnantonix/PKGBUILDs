@@ -1,8 +1,8 @@
 # Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
 # Contributor: Allan McRae <allan@archlinux.org>
 
-pkgname=mbpfan-git
-pkgver=20130207
+pkgname=mbpfand
+pkgver=20130210
 pkgrel=1
 pkgdesc="Automatically adjust the fan on a MacBook Pro"
 arch=('i686' 'x86_64')
@@ -10,8 +10,9 @@ url="https://github.com/jynnantonix/mbpfan"
 license=('GPL3')
 makedepends=('git')
 depends=('gcc-libs')
-provides=('mbpfan')
-conflicts=('mbpfan')
+provides=('mbpfand')
+conflicts=('mbpfand')
+replaces=('mbpfan-git')
 changelog=CHANGELOG
 
 _gitroot="git://github.com/jynnantonix/mbpfan.git"
@@ -32,9 +33,8 @@ build() {
 
   [[ -d "${srcdir}/$_gitname-build" ]] && rm -rf "${srcdir}/$_gitname-build"
   git clone "${srcdir}/$_gitname" "${srcdir}/$_gitname-build"
-  cd "${srcdir}/$_gitname-build"
 
-  make
+  make -C "${srcdir}/$_gitname-build"
 }
 
 package() {
