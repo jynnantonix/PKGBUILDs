@@ -1,0 +1,11 @@
+2013-02-20 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+
+	* 20130220 :
+	Added patch to create my custom config file.
+	Added patch to download files to the downloads folder
+	Added patch to enable the use of shortcuts
+
+2013-02-19 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+
+	* 20130219 :
+	First upload of PKGBUILD

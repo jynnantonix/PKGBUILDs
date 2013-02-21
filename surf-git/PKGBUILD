@@ -12,6 +12,7 @@ depends=("gtk2" "webkitgtk2")
 makedepends=("pkgconfig" "git" "xorg-utils")
 conflicts=("surf")
 provides=("surf")
+changelog=CHANGELOG
 source=( 0001-Add-my-custom-config.patch  
          0002-Change-to-downloads-directory-before-calling-curl.patch  
          0003-Add-shortcut-support.patch )
