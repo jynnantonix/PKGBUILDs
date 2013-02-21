@@ -1,0 +1,85 @@
+From d351d7515b12cc3d299cc467151c2558d161478f Mon Sep 17 00:00:00 2001
+From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
+Date: Wed, 20 Feb 2013 22:36:34 -0500
+Subject: [PATCH 3/3] Add shortcut support
+
+Signed-off-by: Chirantan Ekbote <chirantan.ekbote@gmail.com>
+---
+ config.h |  5 +++++
+ surf.c   | 23 +++++++++++++++++++++--
+ 2 files changed, 26 insertions(+), 2 deletions(-)
+
+diff --git a/config.h b/config.h
+index 5d7a4dd..f557396 100644
+--- a/config.h
++++ b/config.h
+@@ -37,6 +37,11 @@ static Bool hidebackground  = FALSE;
+ 
+ #define MODKEY GDK_CONTROL_MASK
+ 
++/* search engines */
++static ShortCut shortcuts[] = {
++  { "g", "https://www.google.com/search?q=%s" }
++};
++
+ /* hotkeys */
+ /*
+  * If you use anything else but MODKEY and GDK_SHIFT_MASK, don't forget to
+diff --git a/surf.c b/surf.c
+index ba00e5b..fdfb43d 100644
+--- a/surf.c
++++ b/surf.c
+@@ -68,6 +68,11 @@ typedef struct {
+ 	SoupCookieJarTextClass parent_class;
+ } CookieJarClass;
+ 
++typedef struct {
++  char *token;
++  char *uri;
++} ShortCut;
++
+ G_DEFINE_TYPE(CookieJar, cookiejar, SOUP_TYPE_COOKIE_JAR_TEXT)
+ 
+ static Display *dpy;
+@@ -133,6 +138,7 @@ static void loaduri(Client *c, const Arg *arg);
+ static void navigate(Client *c, const Arg *arg);
+ static Client *newclient(void);
+ static void newwindow(Client *c, const Arg *arg, gboolean noembed);
++static gchar *parseuri(const gchar *uri);
+ static void pasteuri(GtkClipboard *clipboard, const char *text, gpointer d);
+ static void populatepopup(WebKitWebView *web, GtkMenu *menu, Client *c);
+ static void popupactivate(GtkMenuItem *menu, Client *);
+@@ -586,8 +592,7 @@ loaduri(Client *c, const Arg *arg) {
+ 		u = g_strdup_printf("file://%s", rp);
+ 		free(rp);
+ 	} else {
+-		u = g_strrstr(uri, "://") ? g_strdup(uri)
+-			: g_strdup_printf("http://%s", uri);
++		u = parseuri(uri);
+ 	}
+ 
+ 	/* prevents endless loop */
+@@ -843,6 +848,20 @@ popupactivate(GtkMenuItem *menu, Client *c) {
+ 	}
+ }
+ 
++static gchar *
++parseuri(const gchar *uri) {
++	guint i;
++	for (i = 0; i < LENGTH(shortcuts); i++) {
++		if (shortcuts[i].token == NULL || shortcuts[i].uri == NULL ||
++                    *(uri + strlen(shortcuts[i].token)) != ' ')
++			continue;
++		if (g_str_has_prefix(uri, shortcuts[i].token))
++			return g_strdup_printf(shortcuts[i].uri, uri +
++                                               strlen(shortcuts[i].token) + 1);
++	}
++	return g_strrstr(uri, "://") ? g_strdup(uri) : g_strdup_printf("http://%s", uri);
++}
++
+ static void
+ pasteuri(GtkClipboard *clipboard, const char *text, gpointer d) {
+ 	Arg arg = {.v = text };
+-- 
+1.8.1.3
+

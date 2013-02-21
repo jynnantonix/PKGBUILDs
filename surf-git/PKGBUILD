@@ -2,7 +2,7 @@
 
 pkgname=surf-git
 _pkgname=surf
-pkgver=20130218
+pkgver=20130220
 pkgrel=1
 pkgdesc="A simple webbrowser which is based on webkit/gtk+"
 url="http://surf.suckless.org"
@@ -12,8 +12,12 @@ depends=("gtk2" "webkitgtk2")
 makedepends=("pkgconfig" "git" "xorg-utils")
 conflicts=("surf")
 provides=("surf")
-source=( config.h )
-md5sums=('8ddf6244dece90d81b1d3c0b4f9142e3')
+source=( 0001-Add-my-custom-config.patch  
+         0002-Change-to-downloads-directory-before-calling-curl.patch  
+         0003-Add-shortcut-support.patch )
+md5sums=('60a06c96ab29f5c5e2aaab9d3c517d40'
+         '4d4488e3506246e9161ad9a6cdcde173'
+         '23e1bf328d834fa4cbdf5c386ba8b7f5')
 
 _gitroot="http://git.suckless.org/surf"
 _gitname="surf"
@@ -35,10 +39,15 @@ build() {
     git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
     cd "$srcdir/$_gitname-build"
 
-    cp "${srcdir}/config.h" config.h
     sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
     sed -i 's/^CFLAGS = -std/CFLAGS += -std/g' config.mk
     sed -i 's/^LDFLAGS =/LDFLAGS +=/g' config.mk
+
+    msg "Applying patches..."
+    git apply "${srcdir}/0001-Add-my-custom-config.patch"
+    git apply "${srcdir}/0002-Change-to-downloads-directory-before-calling-curl.patch"
+    git apply "${srcdir}/0003-Add-shortcut-support.patch"
+
     make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
 }
 
