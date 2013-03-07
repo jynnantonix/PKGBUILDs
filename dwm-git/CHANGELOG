@@ -1,0 +1,6 @@
+2013-03-07 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+
+	* 20130307 :
+	Added CHANGELOG
+	Use patch based system instead of custom config
+	file to make mods

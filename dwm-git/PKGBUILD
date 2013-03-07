@@ -1,6 +1,6 @@
 pkgname=dwm-git
 _pkgname=dwm
-pkgver=20130218
+pkgver=20130307
 pkgrel=1
 pkgdesc="A dynamic window manager for X"
 url="http://dwm.suckless.org"
@@ -12,9 +12,12 @@ makedepends=('git')
 install=dwm.install
 provides=('dwm')
 conflicts=('dwm')
-source=( config.h
+changelog=CHANGELOG
+source=( 0001-Change-font-to-size-10-and-change-modkey-to-mod4.patch
+	0002-Append-compiler-flags-instead-of-overwriting-them.patch
 	dwm.desktop)
-md5sums=('5da84eda5e2479c2166215e170383ffd'
+md5sums=('5453e3f1e67d4c5e226668064b81498f'
+         '0caf809fd6b08b0ab2e9220ccae41c78'
          '939f403a71b6e85261d09fc3412269ee')
 
 _gitroot=http://git.suckless.org/dwm
@@ -38,12 +41,10 @@ build() {
   git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
   cd "$srcdir/$_gitname-build"
 
-  cp $srcdir/config.h config.h
-  sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
-  sed -i 's/^#CFLAGS   = -g/#CFLAGS += -g/g' config.mk
-  sed -i 's/^CFLAGS   = -std/CFLAGS += -std/g' config.mk
-  sed -i 's/^#LDFLAGS  = -g/#LDFLAGS += -g/g' config.mk
-  sed -i 's/^LDFLAGS  = -s/LDFLAGS += -s/g' config.mk
+	msg "Applying patches..."
+	git apply "${srcdir}/0001-Change-font-to-size-10-and-change-modkey-to-mod4.patch"
+	git apply "${srcdir}/0002-Append-compiler-flags-instead-of-overwriting-them.patch"
+
   make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
 }
 
