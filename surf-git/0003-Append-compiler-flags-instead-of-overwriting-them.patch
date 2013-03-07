@@ -1,0 +1,29 @@
+From e2d05044eb9c28c94836ae4b0f3cffd44272b132 Mon Sep 17 00:00:00 2001
+From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
+Date: Thu, 7 Mar 2013 17:06:22 -0500
+Subject: [PATCH 3/3] Append compiler flags instead of overwriting them
+
+---
+ config.mk | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/config.mk b/config.mk
+index b7a902f..4e2b7b4 100644
+--- a/config.mk
++++ b/config.mk
+@@ -18,9 +18,9 @@ INCS = -I. -I/usr/include -I${X11INC} ${GTKINC}
+ LIBS = -L/usr/lib -lc -L${X11LIB} -lX11 ${GTKLIB} -lgthread-2.0
+ 
+ # flags
+-CPPFLAGS = -DVERSION=\"${VERSION}\" -D_BSD_SOURCE
+-CFLAGS = -std=c99 -pedantic -Wall -Os ${INCS} ${CPPFLAGS}
+-LDFLAGS = -g ${LIBS}
++CPPFLAGS += -DVERSION=\"${VERSION}\" -D_BSD_SOURCE
++CFLAGS += -std=c99 -pedantic -Wall -Os ${INCS} ${CPPFLAGS}
++LDFLAGS += -g ${LIBS}
+ 
+ # Solaris
+ #CFLAGS = -fast ${INCS} -DVERSION=\"${VERSION}\"
+-- 
+1.8.1.5
+

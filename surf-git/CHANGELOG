@@ -1,3 +1,10 @@
+2013-03-07 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+
+	* 20130307 :
+	Refactored hacks branch to use config.def.h instead
+	of config.h
+	Added new patches to apply on updated git tree
+
 2013-02-20 Chirantan Ekbote <chirantan.ekbote@gmail.com>
 
 	* 20130220 :

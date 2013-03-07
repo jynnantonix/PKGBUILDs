@@ -1,8 +1,9 @@
+# Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
 # Contributor: totoloco <totoloco at gmail dot com>
 
 pkgname=surf-git
 _pkgname=surf
-pkgver=20130220
+pkgver=20130307
 pkgrel=1
 pkgdesc="A simple webbrowser which is based on webkit/gtk+"
 url="http://surf.suckless.org"
@@ -13,48 +14,44 @@ makedepends=("pkgconfig" "git" "xorg-utils")
 conflicts=("surf")
 provides=("surf")
 changelog=CHANGELOG
-source=( 0001-Add-my-custom-config.patch  
-         0002-Change-to-downloads-directory-before-calling-curl.patch  
-         0003-Add-shortcut-support.patch )
-md5sums=('60a06c96ab29f5c5e2aaab9d3c517d40'
-         '4d4488e3506246e9161ad9a6cdcde173'
-         '23e1bf328d834fa4cbdf5c386ba8b7f5')
+source=( 0001-Add-support-for-shortcuts.patch
+	0002-Change-to-downloads-directory-before-calling-curl.patch  
+	0003-Append-compiler-flags-instead-of-overwriting-them.patch )
+md5sums=('8fbb891c9af92cc553f25f5f8ab5f941'
+         'a43eb3a25ce8fb91478d8722abe29c55'
+         '64ede915cc1be2780a96585a0712cab8')
 
 _gitroot="http://git.suckless.org/surf"
 _gitname="surf"
 
 build() {
-    cd "${srcdir}"
-    
-    if [[ -d $_gitname ]] ; then
-	cd "$_gitname" && git pull origin
-	msg "The local files are updated."
-    else
-	git clone "$_gitroot" "$_gitname"
-    fi
-    
-    msg "GIT checkout done or server timeout"
-    msg "Starting make..."
+  cd "${srcdir}"
+  
+  if [[ -d $_gitname ]] ; then
+		cd "$_gitname" && git pull origin
+		msg "The local files are updated."
+  else
+		git clone "$_gitroot" "$_gitname"
+  fi
+  
+  msg "GIT checkout done or server timeout"
+  msg "Starting make..."
 
-    rm -rf "$srcdir/$_gitname-build"
-    git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
-    cd "$srcdir/$_gitname-build"
+  rm -rf "$srcdir/$_gitname-build"
+  git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
+  cd "$srcdir/$_gitname-build"
 
-    sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
-    sed -i 's/^CFLAGS = -std/CFLAGS += -std/g' config.mk
-    sed -i 's/^LDFLAGS =/LDFLAGS +=/g' config.mk
+  msg "Applying patches..."
+  git apply "${srcdir}/0001-Add-support-for-shortcuts.patch"
+  git apply "${srcdir}/0002-Change-to-downloads-directory-before-calling-curl.patch"
+	git apply "${srcdir}/0003-Append-compiler-flags-instead-of-overwriting-them.patch"
 
-    msg "Applying patches..."
-    git apply "${srcdir}/0001-Add-my-custom-config.patch"
-    git apply "${srcdir}/0002-Change-to-downloads-directory-before-calling-curl.patch"
-    git apply "${srcdir}/0003-Add-shortcut-support.patch"
-
-    make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+  make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
 }
 
 package() {
-    cd "$srcdir/$_gitname-build"
-    make PREFIX=/usr DESTDIR="${pkgdir}" install 
-    install -m644 -D LICENSE "$pkgdir/usr/share/licenses/$_pkgname/LICENSE"
-    install -m644 -D README "$pkgdir/usr/share/doc/$_pkgname/README"
+  cd "$srcdir/$_gitname-build"
+  make PREFIX=/usr DESTDIR="${pkgdir}" install 
+  install -m644 -D LICENSE "$pkgdir/usr/share/licenses/$_pkgname/LICENSE"
+  install -m644 -D README "$pkgdir/usr/share/doc/$_pkgname/README"
 }
