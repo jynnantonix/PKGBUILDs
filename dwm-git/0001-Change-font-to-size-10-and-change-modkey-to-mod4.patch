@@ -1,7 +1,7 @@
 From a943d6a9090f8449417b592d2e9f345fd1f523dc Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Thu, 7 Mar 2013 17:19:15 -0500
-Subject: [PATCH 1/2] Change font to size 10 and change modkey to mod4
+Subject: [PATCH 1/6] Change font to size 10 and change modkey to mod4
 
 Signed-off-by: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 ---

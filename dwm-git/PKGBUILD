@@ -1,6 +1,6 @@
 pkgname=dwm-git
 _pkgname=dwm
-pkgver=20130307
+pkgver=20130309
 pkgrel=1
 pkgdesc="A dynamic window manager for X"
 url="http://dwm.suckless.org"
@@ -15,9 +15,17 @@ conflicts=('dwm')
 changelog=CHANGELOG
 source=( 0001-Change-font-to-size-10-and-change-modkey-to-mod4.patch
 	0002-Append-compiler-flags-instead-of-overwriting-them.patch
+	0003-Don-t-show-the-status-bar-on-startup.patch
+	0004-Use-st-with-tmux-as-default-terminal.patch
+	0005-Change-tag-names-to-common-applications.patch
+	0006-Compile-with-icc.patch
 	dwm.desktop)
-md5sums=('5453e3f1e67d4c5e226668064b81498f'
-         '0caf809fd6b08b0ab2e9220ccae41c78'
+md5sums=('99dac86ac92ce246e37f3c40401658a9'
+         'dbbbf93275e9f863f26b81d23516dea6'
+         '696db6a880cdc2adf343a33ee0f9539e'
+         'c1a4933367451a943f57dbeaa76b8a7f'
+         'deaf1d0ffb54db7679abd965b79ffeba'
+         '05c383f386ee3ded4acad4b1497222ee'
          '939f403a71b6e85261d09fc3412269ee')
 
 _gitroot=http://git.suckless.org/dwm
@@ -44,16 +52,20 @@ build() {
 	msg "Applying patches..."
 	git apply "${srcdir}/0001-Change-font-to-size-10-and-change-modkey-to-mod4.patch"
 	git apply "${srcdir}/0002-Append-compiler-flags-instead-of-overwriting-them.patch"
+	git apply "${srcdir}/0003-Don-t-show-the-status-bar-on-startup.patch"
+	git apply "${srcdir}/0004-Use-st-with-tmux-as-default-terminal.patch"
+	git apply "${srcdir}/0005-Change-tag-names-to-common-applications.patch"
+	git apply "${srcdir}/0006-Compile-with-icc.patch"
 
   make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
 }
 
 package() {
   cd "$srcdir/$_gitname-build"
-  make PREFIX=/usr DESTDIR=$pkgdir install
-  install -m644 -D LICENSE $pkgdir/usr/share/licenses/$pkgname/LICENSE
-  install -m644 -D README $pkgdir/usr/share/doc/$pkgname/README
-  install -m644 -D $srcdir/dwm.desktop $pkgdir/usr/share/xsessions/dwm.desktop
+  make PREFIX=/usr DESTDIR="${pkgdir}" install
+  install -m644 -D LICENSE "${pkgdir}/usr/share/licenses/$pkgname/LICENSE"
+  install -m644 -D README "${pkgdir}/usr/share/doc/$pkgname/README"
+  install -m644 -D "${srcdir}/dwm.desktop" "${pkgdir}/usr/share/xsessions/dwm.desktop"
 }
 
 # vim:set ts=2 sw=2 et:

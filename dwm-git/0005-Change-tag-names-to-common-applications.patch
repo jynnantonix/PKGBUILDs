@@ -1,0 +1,26 @@
+From cabc11222ed3d6b354e0cd89c05b342ebe75852c Mon Sep 17 00:00:00 2001
+From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
+Date: Sat, 9 Mar 2013 15:20:57 -0500
+Subject: [PATCH 5/6] Change tag names to common applications
+
+Signed-off-by: Chirantan Ekbote <chirantan.ekbote@gmail.com>
+---
+ config.def.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/config.def.h b/config.def.h
+index a759085..d15845e 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -14,7 +14,7 @@ static const Bool showbar           = False;     /* False means no bar */
+ static const Bool topbar            = True;     /* False means bottom bar */
+ 
+ /* tagging */
+-static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
++static const char *tags[] = { "st", "emacs", "w3m", "wanderlust", "5", "6", "7", "8", "9" };
+ 
+ static const Rule rules[] = {
+ 	/* xprop(1):
+-- 
+1.8.1.5
+
