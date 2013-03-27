@@ -1,7 +1,7 @@
 From 31cdf75ec23bd3ae4d3afbe04992cfac1ef6eddf Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Sat, 9 Mar 2013 15:37:17 -0500
-Subject: [PATCH 6/6] Compile with icc
+Subject: [PATCH 6/7] Compile with icc
 
 Signed-off-by: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 ---
@@ -19,5 +19,5 @@ index 98e5bfa..4b4e74b 100644
 -CC = cc
 +CC = icc
 -- 
-1.8.1.5
+1.8.2
 

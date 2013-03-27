@@ -1,7 +1,7 @@
 From addb8bc4c0d9bcac87b6a41b478455f864c90e0e Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Sat, 9 Mar 2013 14:58:00 -0500
-Subject: [PATCH 3/6] Don't show the status bar on startup
+Subject: [PATCH 3/7] Don't show the status bar on startup
 
 Signed-off-by: Chirantan Ekbote <chirantan.ekbtoe@gmail.com>
 ---
@@ -22,5 +22,5 @@ index 7bce89c..02739cd 100644
  
  /* tagging */
 -- 
-1.8.1.5
+1.8.2
 

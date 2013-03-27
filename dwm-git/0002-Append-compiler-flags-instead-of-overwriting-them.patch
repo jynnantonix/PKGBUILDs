@@ -1,7 +1,7 @@
 From 057323321911427fe444c8c6607d994d96f004e2 Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Thu, 7 Mar 2013 17:21:20 -0500
-Subject: [PATCH 2/6] Append compiler flags instead of overwriting them
+Subject: [PATCH 2/7] Append compiler flags instead of overwriting them
 
 Signed-off-by: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 ---
@@ -27,5 +27,5 @@ index 35fd1e3..98e5bfa 100644
  # Solaris
  #CFLAGS = -fast ${INCS} -DVERSION=\"${VERSION}\"
 -- 
-1.8.1.5
+1.8.2
 

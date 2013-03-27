@@ -1,3 +1,9 @@
+2013-03-27 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+
+	* 20130327 :
+	Added patch to make border black and to bind volume up, down, and
+	mute to amixer commands
+
 2013-03-09 Chirantan Ekbote <chirantan.ekbote@gmail.com>
 
 	* 20130309 :

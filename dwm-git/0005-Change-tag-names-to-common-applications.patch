@@ -1,7 +1,7 @@
 From cabc11222ed3d6b354e0cd89c05b342ebe75852c Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Sat, 9 Mar 2013 15:20:57 -0500
-Subject: [PATCH 5/6] Change tag names to common applications
+Subject: [PATCH 5/7] Change tag names to common applications
 
 Signed-off-by: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 ---
@@ -22,5 +22,5 @@ index a759085..d15845e 100644
  static const Rule rules[] = {
  	/* xprop(1):
 -- 
-1.8.1.5
+1.8.2
 
