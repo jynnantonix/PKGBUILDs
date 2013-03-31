@@ -1,0 +1,39 @@
+# Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
+# Contributor: listdata <linusarver <at> gmail <dot> com>
+pkgname=emacs-zenburn-git
+pkgver=20130331
+pkgrel=1
+_gitname="zenburn-el"
+_gitroot="git://github.com/bbatsov/zenburn-emacs.git"
+pkgdesc="The zenburn color theme for GNU Emacs"
+arch=('any')
+url="https://github.com/bbatsov/zenburn-emacs"
+depends=('emacs')
+makedepends=('git')
+license=('GPL')
+changelog=CHANGELOG
+provides=('emacs-zenburn')
+conflicts=('emacs-zenburn')
+install=$pkgname.install
+
+build() {
+  msg "Connecting to GIT server...."
+
+  if [[ -d $_gitname ]] ; then
+    cd "$_gitname" && git pull origin
+    msg "The local files are updated."
+  else
+    git clone "$_gitroot" "$_gitname"
+  fi
+
+  msg "GIT checkout done or server timeout"
+  msg "Starting make..."
+
+  rm -rf "$srcdir/$_gitname-build"
+  cp -r "$srcdir/$_gitname" "$srcdir/$_gitname-build"
+}
+
+package() {
+	cd "$srcdir/$_gitname-build"
+  install -Dm644 zenburn-theme.el	"$pkgdir/usr/share/emacs/site-lisp/zenburn-theme.el"
+}
