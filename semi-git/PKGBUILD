@@ -1,0 +1,29 @@
+# Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
+
+pkgname=semi-git
+pkgver=fd8870e
+pkgrel=1
+pkgdesc="Library to provide MIME features for GNU Emacs"
+url="https://github.com/ikazuhiro/semi-epg"
+arch=('any')
+license=('GPL')
+depends=('emacs' 'emacs-apel' 'flim')
+makedepends=('git')
+provides=('semi')
+conflicts=('semi')
+changelog=CHANGELOG
+source=("semi::git://github.com/ikazuhiro/semi-epg")
+md5sums=('SKIP')
+
+pkgver() {
+  cd 'semi'
+	git rev-parse --short HEAD
+}
+
+build() {
+	make -C semi
+}
+
+package() {
+	make -C semi PREFIX="$pkgdir/usr" install
+}
