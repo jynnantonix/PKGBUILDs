@@ -1,0 +1,29 @@
+# Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
+
+pkgname=flim-git
+pkgver=d88799b
+pkgrel=1
+pkgdesc="Library to provide basic features about message representation or encoding"
+url="https://github.com/ikazuhiro/flim"
+arch=('any')
+license=('GPL')
+depends=('emacs' 'emacs-apel')
+makedepends=('git')
+provides=('flim')
+conflicts=('flim')
+change=CHANGELOG
+source=("git://github.com/ikazuhiro/flim")
+md5sums=('SKIP')
+
+pkgver() {
+  cd 'flim'
+	git rev-parse --short HEAD
+}
+
+build() {
+	make -C flim
+}
+
+package() {
+	make -C flim PREFIX="$pkgdir/usr" install
+}
