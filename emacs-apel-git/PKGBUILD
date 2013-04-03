@@ -1,0 +1,29 @@
+# Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
+
+pkgname=emacs-apel-git
+pkgver=b0f2bf0
+pkgrel=1
+pkgdesc="Library for making portable emacs-lisp programs"
+url="https://github.com/ikazuhiro/apel"
+arch=('any')
+license=('GPL')
+depends=('emacs')
+makedepends=('git')
+provides=('emacs-apel')
+conflicts=('emacs-apel')
+changelog=CHANGELOG
+source=("git://github.com/ikazuhiro/apel")
+md5sums=('SKIP')
+
+pkgver() {
+  cd 'apel'
+	git rev-parse --short HEAD
+}
+
+build() {
+	make -C apel
+}
+
+package() {
+	make -C apel PREFIX="$pkgdir/usr" install
+}
