@@ -1,0 +1,16 @@
+# Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
+
+pkgname=netctl-auto-sleep
+pkgver=0.1
+pkgrel=1
+pkgdesc="Systemd unit file for netctl-auto-sleep"
+arch=('any')
+license=('GPL')
+depends=('systemd' 'netctl')
+source=('netctl-auto-sleep@.service')
+md5sums=('e74c102b62943d288d492491ab048b83')
+
+package() {
+	install -Dm644 'netctl-auto-sleep@.service' \
+		"$pkgdir/usr/lib/systemd/system/netctl-auto-sleep@.service"
+}
