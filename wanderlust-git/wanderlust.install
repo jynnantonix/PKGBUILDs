@@ -1,5 +1,19 @@
 post_install() {
 		/usr/bin/install-info /usr/share/info/wl.info.gz /usr/share/info/dir
+		cat <<EOF
+==> To ensure wanderlust doesn't hang when you put your system to sleep,
+==> ensure that you are running emacs in daemon mode and then enable the
+==> wanderlust sleep service file with:
+==>
+==>    sudo systemctl enable wanderlust-sleep.service
+==>
+==> When your computer wakes from sleep, remember to plug wanderlust back
+==> in by entering M-t in folder or summary mode or by evaluating the
+==> following command:
+==>
+==>    (wl-toggle-plugged 'on)
+==>
+EOF
 }
 
 post_upgrade() {
@@ -8,4 +22,11 @@ post_upgrade() {
 
 post_remove() {
 		/usr/bin/install-info --delete /usr/share/info/wl.info.gz /usr/share/info/dir
+		cat <<EOF
+==> If you enabled the wanderlust sleep service, remember to disable it with:
+==>
+==>    sudo systemctl disable wanderlust-sleep.service
+==>
+==>
+EOF
 }
