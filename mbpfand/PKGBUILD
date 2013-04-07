@@ -2,7 +2,7 @@
 # Contributor: Allan McRae <allan@archlinux.org>
 
 pkgname=mbpfand
-pkgver=20130210
+pkgver=1.5.0.5.g85cd994
 pkgrel=1
 pkgdesc="Automatically adjust the fan on a MacBook Pro"
 arch=('i686' 'x86_64')
@@ -12,31 +12,20 @@ makedepends=('git')
 depends=('gcc-libs')
 provides=('mbpfand')
 conflicts=('mbpfand')
-replaces=('mbpfan-git')
+backup=(etc/mbpfan.conf)
 changelog=CHANGELOG
+source=("git://github.com/jynnantonix/mbpfan.git")
+md5sums=('SKIP')
 
-_gitroot="git://github.com/jynnantonix/mbpfan.git"
-_gitname="mbpfan"
+pkgver() {
+	cd 'mbpfan'
+	git describe --always | sed 's/-/./g;s/v\.//g'
+}
 
 build() {
-  msg "Connecting to GIT server...."
-
-  if [[ -d $_gitname ]] ; then
-    cd "$_gitname" && git pull origin
-    msg "The local files are updated."
-  else
-    git clone "$_gitroot" "$_gitname"
-  fi
-
-  msg "GIT checkout done or server timeout"
-  msg "Starting make..."
-
-  [[ -d "${srcdir}/$_gitname-build" ]] && rm -rf "${srcdir}/$_gitname-build"
-  git clone "${srcdir}/$_gitname" "${srcdir}/$_gitname-build"
-
-  make -C "${srcdir}/$_gitname-build"
+  make -C mbpfan
 }
 
 package() {
-  make -C "${srcdir}/$_gitname-build" DESTDIR="${pkgdir}" install
+  make -C mbpfan DESTDIR="${pkgdir}" install
 }

@@ -1,3 +1,10 @@
+2013-04-07 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+
+	* 20130407 :
+	Added backup list so the old config file doesn't get overwritten
+	on upgrade.
+	Updated to pacman 4.1
+
 2013-02-07 Chirantan Ekbote <chirantan.ekbote@gmail.com>
 
 	* 20130207 :
