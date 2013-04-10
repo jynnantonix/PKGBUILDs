@@ -3,6 +3,7 @@
 	Fixed permissions for update_mirrorlist
 	Updated to pacman 4.1
 	Changed license to GPL
+	Added motd script to check arch news daily
 
 2013-02-19 Chirantan Ekbote <chirantan.ekbote@gmail.com>
 
