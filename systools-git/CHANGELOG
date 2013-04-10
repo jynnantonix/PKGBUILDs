@@ -1,3 +1,9 @@
+2013-04-10 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+	* 20130410 :
+	Fixed permissions for update_mirrorlist
+	Updated to pacman 4.1
+	Changed license to GPL
+
 2013-02-19 Chirantan Ekbote <chirantan.ekbote@gmail.com>
 
 	* 20130219 :
