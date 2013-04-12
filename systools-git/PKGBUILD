@@ -1,7 +1,7 @@
 # Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
 
 pkgname=systools-git
-pkgver=0.11.0fe141f
+pkgver=0.12.6c995e7
 pkgrel=1
 pkgdesc='Small scripts to perform various system utility functions'
 arch=('i686 x86_64')
@@ -18,6 +18,7 @@ pkgver() {
 
 package() {
 	cd scripts
+	install -Dm644 sleep@.service "$pkgdir/usr/lib/systemd/system/sleep@.service"
 	install -Dm755 sysinfo "$pkgdir/usr/bin/sysinfo"
 	install -Dm744 motd "$pkgdir/etc/cron.daily/motd"
 	install -Dm744 update_mirrorlist "$pkgdir/etc/cron.weekly/update_mirrorlist"
