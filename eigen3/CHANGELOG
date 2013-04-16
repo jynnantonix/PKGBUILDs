@@ -1,0 +1,7 @@
+2013-04-16 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+
+	* 3.1.3-1
+	Updated to version 3.1.3
+	Added license file to built package
+	Chaged dependency pkgconfig to its correct name pkg-config
+	Updated to pacman 4.1 semantics
