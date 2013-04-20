@@ -1,3 +1,10 @@
+2013-04-20 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+
+	* 6.0.28.gf2544a3 :
+	Turned off compiling with icc
+	Added pkgver() function
+	Moved patches to prepare() function
+
 2013-03-27 Chirantan Ekbote <chirantan.ekbote@gmail.com>
 
 	* 20130327 :
