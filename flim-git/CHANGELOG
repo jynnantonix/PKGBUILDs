@@ -1,3 +1,9 @@
+2013-04-20 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+
+	* 1.14.807.d88799b:
+	Updated pkgver() function to use the current version as well as
+	the number of commits in HEAD
+
 2013-04-03 Chirantan Ekbote <chirantan.ekbote@gmail.com>
 	* 20130403:
 	Created package

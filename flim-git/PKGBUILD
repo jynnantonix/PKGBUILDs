@@ -1,7 +1,7 @@
 # Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
 
 pkgname=flim-git
-pkgver=d88799b
+pkgver=1.14.807.d88799b
 pkgrel=1
 pkgdesc="Library to provide basic features about message representation or encoding"
 url="https://github.com/ikazuhiro/flim"
@@ -17,7 +17,7 @@ md5sums=('SKIP')
 
 pkgver() {
   cd 'flim'
-	git rev-parse --short HEAD
+	echo 1.14.$(git rev-list --count HEAD).$(git rev-parse --short HEAD)
 }
 
 build() {
