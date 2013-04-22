@@ -1,0 +1,80 @@
+From 037226df859ac48b26eab464bed2a5a7c4e31122 Mon Sep 17 00:00:00 2001
+From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
+Date: Mon, 22 Apr 2013 17:36:03 -0400
+Subject: [PATCH 6/6] Use zenburn colors
+
+---
+ config.def.h | 39 ++++++++++++++++++++-------------------
+ 1 file changed, 20 insertions(+), 19 deletions(-)
+
+diff --git a/config.def.h b/config.def.h
+index 3925039..b06e3ba 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -29,29 +29,31 @@ static unsigned int tabspaces = 2;
+ /* Terminal colors (16 first used in escape sequence) */
+ static const char *colorname[] = {
+ 	/* 8 normal colors */
+-	"black",
+-	"red3",
+-	"green3",
+-	"yellow3",
+-	"blue2",
+-	"magenta3",
+-	"cyan3",
+-	"gray90",
++	"#1e2320",
++	"#705050",
++	"#60b48a",
++	"#dfaf8f",
++	"#506070",
++	"#dc8cc3",
++	"#8cd0d3",
++	"#dcdccc",
+ 
+ 	/* 8 bright colors */
+-	"gray50",
+-	"red",
+-	"green",
+-	"yellow",
+-	"#5c5cff",
+-	"magenta",
+-	"cyan",
+-	"white",
++	"#709080",
++	"#dca3a3",
++	"#c3bf9f",
++	"#f0dfaf",
++	"#94bff3",
++	"#ec93d3",
++	"#93e0e3",
++	"#ffffff",
+ 
+ 	[255] = 0,
+ 
+ 	/* more colors can be added after 255 to use with DefaultXX */
+ 	"#cccccc",
++	"#3f3f3f",
++	"#dcdccc",
+ };
+ 
+ 
+@@ -59,8 +61,8 @@ static const char *colorname[] = {
+  * Default colors (colorname index)
+  * foreground, background, cursor
+  */
+-static unsigned int defaultfg = 7;
+-static unsigned int defaultbg = 0;
++static unsigned int defaultfg = 258;
++static unsigned int defaultbg = 257;
+ static unsigned int defaultcs = 256;
+ 
+ /*
+@@ -329,4 +331,3 @@ static Key key[] = {
+ static uint selmasks[] = {
+ 	[SEL_RECTANGULAR] = Mod1Mask,
+ };
+-
+-- 
+1.8.2.1
+

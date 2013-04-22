@@ -1,0 +1,25 @@
+From 4ac5404f2d0e7f2d46e9d1b2d3e721d9b7f4ba06 Mon Sep 17 00:00:00 2001
+From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
+Date: Mon, 22 Apr 2013 17:05:39 -0400
+Subject: [PATCH 4/6] Use zsh
+
+---
+ config.def.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/config.def.h b/config.def.h
+index 499fb64..e4bfb1b 100644
+--- a/config.def.h
++++ b/config.def.h
+@@ -7,7 +7,7 @@
+  */
+ static char font[] = "-*-terminus-medium-r-*-*-10-*-*-*-*-*-*-*";
+ static int borderpx = 2;
+-static char shell[] = "/bin/sh";
++static char shell[] = "/bin/zsh";
+ 
+ /* timeouts (in milliseconds) */
+ static unsigned int doubleclicktimeout = 300;
+-- 
+1.8.2.1
+

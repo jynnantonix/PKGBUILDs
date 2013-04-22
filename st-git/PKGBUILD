@@ -1,12 +1,12 @@
-# Maintainer: Gaetan Bisson <bisson@archlinux.org>
+# Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
+# Contributor: Gaetan Bisson <bisson@archlinux.org>
 # Contributor: Scytrin dai Kinthra <scytrin@gmail.com>
 
 pkgname=st-git
-epoch=1
-pkgver=20130218
+pkgver=526.b596d6b
 pkgrel=1
 pkgdesc='Simple virtual terminal emulator for X'
-url='http://git.suckless.org/st/'
+url='http://suckless.org/st/'
 license=('MIT')
 depends=('libxext' 'libxft')
 makedepends=('git' 'ncurses')
@@ -14,39 +14,46 @@ arch=('i686' 'x86_64' 'armv7h')
 provides=('st')
 conflicts=('st')
 replaces=('st-hg')
-source=( config.h )
-md5sums=('d8c4d2164030167d062911fb27cb04e1')
+changelog=CHANGELOG
+source=( "git://git.suckless.org/st"
+	0001-Use-control-as-mod-key.patch
+	0002-Use-2-spaces-for-tabs.patch
+	0003-Use-terminus-font.patch
+	0004-Use-zsh.patch
+	0005-Emulate-emacs-yank-with-ModMask-y.patch
+	0006-Use-zenburn-colors.patch )
+md5sums=('SKIP'
+         'd6b167d9939dda654e708020f83e777b'
+         'ec994dadb706a6c2104b08078dad6f04'
+         'dcfadb8a698337de092d85f42c9ec462'
+         '2bfbf77e072c4b18a0ff04da5a37f307'
+         '4cd38ff2899d1ede52941914de901337'
+         '907882d9daafbf5ae2151305231c5fdc')
 
-_gitroot='http://git.suckless.org/st/'
-_gitname='st'
+pkgver() {
+	cd st
+	echo $(git rev-list --count HEAD).$(git rev-parse --short HEAD)
+}
+
+prepare() {
+	cd st
+	msg "Applying patches..."
+	git apply "$srcdir/0001-Use-control-as-mod-key.patch"
+	git apply "$srcdir/0002-Use-2-spaces-for-tabs.patch"
+	git apply "$srcdir/0003-Use-terminus-font.patch"
+	git apply "$srcdir/0004-Use-zsh.patch"
+	git apply "$srcdir/0005-Emulate-emacs-yank-with-ModMask-y.patch"
+	git apply "$srcdir/0006-Use-zenburn-colors.patch"
+}
 
 build() {
-    cd "${srcdir}"
-    
-    if [[ -d $_gitname ]] ; then
-	cd "$_gitname" && git pull origin
-	msg "The local files are updated."
-    else
-	git clone "$_gitroot" "$_gitname"
-    fi
-    
-    msg "GIT checkout done or server timeout"
-    msg "Starting make..."
-
-    rm -rf "$srcdir/$_gitname-build"
-    git clone "$srcdir/$_gitname" "$srcdir/$_gitname-build"
-    cd "$srcdir/$_gitname-build"
-
-    cp "${srcdir}/config.h" config.h
-    sed -i 's/CPPFLAGS =/CPPFLAGS +=/g' config.mk
-    sed -i 's/^CFLAGS =/CFLAGS +=/g' config.mk
-    sed -i 's/^LDFLAGS =/LDFLAGS +=/g' config.mk
-    make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+	cd st
+  make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
 }
 
 package() {
-    cd "$srcdir/$_gitname-build"
-    make PREFIX=/usr DESTDIR="${pkgdir}" install 
-    install -m644 -D LICENSE "$pkgdir/usr/share/licenses/$_pkgname/LICENSE"
-    install -m644 -D README "$pkgdir/usr/share/doc/$_pkgname/README"
+	cd st
+  make PREFIX=/usr DESTDIR="$pkgdir" install
+  install -m644 -D LICENSE "$pkgdir/usr/share/licenses/$_pkgname/LICENSE"
+  install -m644 -D README "$pkgdir/usr/share/doc/$_pkgname/README"
 }
