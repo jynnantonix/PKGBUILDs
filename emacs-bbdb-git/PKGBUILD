@@ -1,0 +1,38 @@
+# Maintainer: Ivy Foster <joyfulgirl@archlinux.us>
+pkgname=emacs-bbdb-git
+pkgver=3.0.1165.29efb5e
+pkgrel=1
+pkgdesc="The Insidious Big Brother Database (from git)"
+url="http://savannah.nongnu.org/projects/bbdb/"
+arch=('any')
+license=('GPL3')
+depends=('emacs')
+makedepends=('texinfo')
+optdepends=('vm: The vm mailer for emacs')
+provides=('bbdb=3.0')
+conflicts=('bbdb')
+install=${pkgname}.install
+changelog=ChangeLog
+source=("git://git.savannah.nongnu.org/bbdb.git")
+md5sums=('SKIP')
+
+pkgver() {
+	cd bbdb
+	echo "3.0.$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+build () {
+	cd bbdb
+
+	autoconf
+
+	./configure --prefix=/usr \
+		    --with-lispdir=/usr/share/emacs/site-lisp/bbdb \
+		    --with-tex-dir=/usr/share/texmf/tex/latex
+	make all
+}
+
+package () {
+	cd bbdb
+	make DESTDIR="$pkgdir" install install-el
+}
