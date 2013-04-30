@@ -1,0 +1,37 @@
+From f1e565858e08ca66037727f7f1b8d577b6d1ba0d Mon Sep 17 00:00:00 2001
+From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
+Date: Tue, 30 Apr 2013 00:50:20 -0400
+Subject: [PATCH] Use my keybindings
+
+---
+ src/engine.c | 7 +++----
+ 1 file changed, 3 insertions(+), 4 deletions(-)
+
+diff --git a/src/engine.c b/src/engine.c
+index f25bed8..c61296b 100644
+--- a/src/engine.c
++++ b/src/engine.c
+@@ -427,12 +427,12 @@ int engine_keymap(char keymap[])
+ 	if ((!keymap) || (strnlen(keymap, NUMBER_OF_KEYS + 1) != NUMBER_OF_KEYS))
+ 	{
+ 		/* Invalid string, setting default keymap */
+-		engine.input.down   = KEY_DOWN;
++		engine.input.down   = ' ';
+ 		engine.input.right  = KEY_RIGHT;
+ 		engine.input.left   = KEY_LEFT;
+ 		engine.input.rotate = 'x';
+-		engine.input.rotate_backw = 'z';
+-		engine.input.drop    = ' ';
++		engine.input.rotate_backw = KEY_DOWN;
++		engine.input.drop    = KEY_UP;
+ 		engine.input.hold    = 'c';
+ 		engine.input.pause   = 'p';
+ 		engine.input.quit    = 'q';
+@@ -1313,4 +1313,3 @@ void my_mvwhline(WINDOW* win, int y, int x, chtype ch, int num)
+ }
+ 
+ /* End of Local functions (functions specific to this module) */
+-
+-- 
+1.8.2.2
+

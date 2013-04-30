@@ -1,0 +1,40 @@
+# Maintainer: Lucas de Sena <lucas DOT ta23 @ gmail DOT com>
+# Developer: Alexandre Dantas <alex DOT dantas92 @ gmail DOT com>
+
+pkgname=yetris-git
+pkgver=1.6.113.2108685
+pkgrel=1
+pkgdesc="yetris is a console clone of Tetris(tm)."
+arch=('x86_64' 'i686')
+url="http://www.github.com/alexdantas/yetris/"
+license=('GPLv3')
+depends=('ncurses')
+makedepends=('git')
+conflicts=('yetris')
+source=("git://github.com/alexdantas/yetris.git"
+		"0001-Use-my-keybindings.patch")
+md5sums=('SKIP'
+         'b6580c043e55626fedc134f94d5e32c4')
+
+pkgver() {
+		cd yetris
+		echo "1.6.$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+		cd yetris
+		msg2 "Applying patch..."
+		git apply "$srcdir/0001-Use-my-keybindings.patch"
+}
+
+build() {
+		cd yetris
+		make
+}
+
+package() {
+		cd yetris
+		make DESTDIR="$pkgdir" BINDIR="$pkgdir/usr/bin" install
+}
+
+# vim:set ts=2 sw=2 et:
