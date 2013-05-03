@@ -1,7 +1,7 @@
 # Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
 
 pkgname=wanderlust-git
-pkgver=0.4264.e53d797
+pkgver=2.15.9.4264.e53d797
 pkgrel=1
 pkgdesc="Mail/News reader supporting IMAP4rev1 for emacs"
 url="https://github.com/ikazuhiro/wanderlust"
@@ -25,7 +25,7 @@ _infodir=/usr/share/info
 
 pkgver() {
   cd 'wanderlust'
-	echo "0.$(git rev-list --count HEAD).$(git describe --always)"
+	echo "2.15.9.$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
 build() {

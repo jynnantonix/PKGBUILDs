@@ -1,14 +1,20 @@
+2013-05-03 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+
+	* 2.15.9.4264.e53d797-1 :
+	- Update pkgver() function to properly reflect the current version
+
 2013-04-06 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+
 	* 20130406 :
-	Removed ExecStop command from service file since wnaderlust could
-	start before the internet connection is back up.  Updated install
-	instructions
+	- Remove ExecStop command from service file since wnaderlust could
+	  start before the internet connection is back up.
+	- Update install instructions
 
 2013-04-04 Chirantan Ekbote <chirantan.ekbote@gmail.com>
 	* 20130404 :
-	Added sleep service file so wanderlust doesn't hang when the
-	system goes to sleep
+	- Add sleep service file so wanderlust doesn't hang when the
+	  system goes to sleep
 
 2013-04-03 Chirantan Ekbote <chirantan.ekbote@gmail.com>
 	* 20130403 :
-	Created package
+	- Create package
