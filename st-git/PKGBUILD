@@ -3,7 +3,7 @@
 # Contributor: Scytrin dai Kinthra <scytrin@gmail.com>
 
 pkgname=st-git
-pkgver=526.b596d6b
+pkgver=0.4.545.8e96873
 pkgrel=1
 pkgdesc='Simple virtual terminal emulator for X'
 url='http://suckless.org/st/'
@@ -16,44 +16,41 @@ conflicts=('st')
 replaces=('st-hg')
 changelog=CHANGELOG
 source=( "git://git.suckless.org/st"
-	0001-Use-control-as-mod-key.patch
-	0002-Use-2-spaces-for-tabs.patch
-	0003-Use-terminus-font.patch
-	0004-Use-zsh.patch
-	0005-Emulate-emacs-yank-with-ModMask-y.patch
-	0006-Use-zenburn-colors.patch )
+    0001-Use-control-as-mod-key.patch
+    0002-Use-2-spaces-for-tabs.patch
+    0003-Use-terminus-font.patch
+    0004-Use-zsh.patch
+    0005-Emulate-emacs-yank-with-ModMask-y.patch
+    0006-Use-zenburn-colors.patch )
 md5sums=('SKIP'
-         'd6b167d9939dda654e708020f83e777b'
-         'ec994dadb706a6c2104b08078dad6f04'
-         'dcfadb8a698337de092d85f42c9ec462'
-         '2bfbf77e072c4b18a0ff04da5a37f307'
-         '4cd38ff2899d1ede52941914de901337'
-         '907882d9daafbf5ae2151305231c5fdc')
+    '5dd5a2745952f5b9c989f264cd4bf76b'
+    'da6859538e188c8c4c91b9418f46aeca'
+    '69ccb0200f858a03486b9ba107b699d0'
+    '292fcdf9bee584d0284889a272ec4bca'
+    '24f38452e05308ecaf1e9763fe389009'
+    '1c424777d3c83720f4c94e3e7df967cd')
 
 pkgver() {
-	cd st
-	echo $(git rev-list --count HEAD).$(git rev-parse --short HEAD)
+    cd st
+    echo "0.4.$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
 }
 
 prepare() {
-	cd st
-	msg "Applying patches..."
-	git apply "$srcdir/0001-Use-control-as-mod-key.patch"
-	git apply "$srcdir/0002-Use-2-spaces-for-tabs.patch"
-	git apply "$srcdir/0003-Use-terminus-font.patch"
-	git apply "$srcdir/0004-Use-zsh.patch"
-	git apply "$srcdir/0005-Emulate-emacs-yank-with-ModMask-y.patch"
-	git apply "$srcdir/0006-Use-zenburn-colors.patch"
+    cd st
+    for i in $(find ../ -name '*.patch' | sort); do
+	msg2 "Applying $i..."
+	git apply $i
+    done
 }
 
 build() {
-	cd st
-  make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+    cd st
+    make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
 }
 
 package() {
-	cd st
-  make PREFIX=/usr DESTDIR="$pkgdir" install
-  install -m644 -D LICENSE "$pkgdir/usr/share/licenses/$_pkgname/LICENSE"
-  install -m644 -D README "$pkgdir/usr/share/doc/$_pkgname/README"
+    cd st
+    make PREFIX=/usr DESTDIR="$pkgdir" install
+    install -m644 -D LICENSE "$pkgdir/usr/share/licenses/$_pkgname/LICENSE"
+    install -m644 -D README "$pkgdir/usr/share/doc/$_pkgname/README"
 }

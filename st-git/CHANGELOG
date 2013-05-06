@@ -1,5 +1,13 @@
+2013-05-06 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+
+	* 0.4.545.8e96873-1 :
+	- Change pkgver() function to properly reflect current version
+	- Change prepare() function to use a loop rather than explicitly
+	  specifying every patch that need to be applied
+	- Update patches after rebasing on upstream
+
 2013-04-22 Chirantan Ekbote <chirantan.ekbote@gmail.com>
 
 	* 526.b596d6b :
-	Switched to patch based system for all my changes
-	Added zeburn color scheme
+	- Switch to patch based system for all my changes
+	- Add zeburn color scheme
