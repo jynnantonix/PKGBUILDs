@@ -1,4 +1,4 @@
-From fdca0f799052a90c51ef4bb5e7d924aeeff1008f Mon Sep 17 00:00:00 2001
+From 772091b1300425daf03710650e6d0f2e8b2c9838 Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Mon, 22 Apr 2013 17:04:42 -0400
 Subject: [PATCH 2/6] Use 2 spaces for tabs
@@ -8,10 +8,10 @@ Subject: [PATCH 2/6] Use 2 spaces for tabs
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/config.def.h b/config.def.h
-index a30c73a..6c528a6 100644
+index 057ea84..2e751ea 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -23,7 +23,7 @@ static unsigned int actionfps = 30;
+@@ -36,7 +36,7 @@ static unsigned int blinktimeout = 800;
  /* TERM value */
  static char termname[] = "st-256color";
  
@@ -21,5 +21,5 @@ index a30c73a..6c528a6 100644
  
  /* Terminal colors (16 first used in escape sequence) */
 -- 
-1.8.2.1
+1.8.2.2
 

@@ -1,4 +1,4 @@
-From 1574bff5c4189eacb5c8b4dbc1d2233207189081 Mon Sep 17 00:00:00 2001
+From efa110aa5baadd5bb05a46e2af16f473795f3f03 Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Mon, 22 Apr 2013 17:05:29 -0400
 Subject: [PATCH 3/6] Use terminus font
@@ -8,7 +8,7 @@ Subject: [PATCH 3/6] Use terminus font
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/config.def.h b/config.def.h
-index 6c528a6..499fb64 100644
+index 2e751ea..ac501e0 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -5,7 +5,7 @@
@@ -21,5 +21,5 @@ index 6c528a6..499fb64 100644
  static char shell[] = "/bin/sh";
  
 -- 
-1.8.2.1
+1.8.2.2
 

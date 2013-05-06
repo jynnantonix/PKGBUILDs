@@ -1,17 +1,17 @@
-From 037226df859ac48b26eab464bed2a5a7c4e31122 Mon Sep 17 00:00:00 2001
+From 5e62e2959e06cfbfcabb5e578dc5c7fe8cb2492a Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Mon, 22 Apr 2013 17:36:03 -0400
 Subject: [PATCH 6/6] Use zenburn colors
 
 ---
- config.def.h | 39 ++++++++++++++++++++-------------------
- 1 file changed, 20 insertions(+), 19 deletions(-)
+ config.def.h | 38 ++++++++++++++++++++------------------
+ 1 file changed, 20 insertions(+), 18 deletions(-)
 
 diff --git a/config.def.h b/config.def.h
-index 3925039..b06e3ba 100644
+index 5c01a08..7a931e8 100644
 --- a/config.def.h
 +++ b/config.def.h
-@@ -29,29 +29,31 @@ static unsigned int tabspaces = 2;
+@@ -42,29 +42,31 @@ static unsigned int tabspaces = 2;
  /* Terminal colors (16 first used in escape sequence) */
  static const char *colorname[] = {
  	/* 8 normal colors */
@@ -24,12 +24,12 @@ index 3925039..b06e3ba 100644
 -	"cyan3",
 -	"gray90",
 +	"#1e2320",
-+	"#705050",
-+	"#60b48a",
++	"#cc9393",
++	"#7f9f7f",
 +	"#dfaf8f",
-+	"#506070",
-+	"#dc8cc3",
 +	"#8cd0d3",
++	"#dc8cc3",
++	"#83d0d3",
 +	"#dcdccc",
  
  	/* 8 bright colors */
@@ -41,9 +41,9 @@ index 3925039..b06e3ba 100644
 -	"magenta",
 -	"cyan",
 -	"white",
-+	"#709080",
-+	"#dca3a3",
 +	"#c3bf9f",
++	"#dca3a3",
++	"#8fb28f",
 +	"#f0dfaf",
 +	"#94bff3",
 +	"#ec93d3",
@@ -59,7 +59,7 @@ index 3925039..b06e3ba 100644
  };
  
  
-@@ -59,8 +61,8 @@ static const char *colorname[] = {
+@@ -72,8 +74,8 @@ static const char *colorname[] = {
   * Default colors (colorname index)
   * foreground, background, cursor
   */
@@ -70,11 +70,6 @@ index 3925039..b06e3ba 100644
  static unsigned int defaultcs = 256;
  
  /*
-@@ -329,4 +331,3 @@ static Key key[] = {
- static uint selmasks[] = {
- 	[SEL_RECTANGULAR] = Mod1Mask,
- };
--
 -- 
-1.8.2.1
+1.8.2.2
 
