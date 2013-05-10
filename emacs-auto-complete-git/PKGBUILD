@@ -1,0 +1,41 @@
+# Contributor: m039 <flam44 (at) gmail (dot) com>
+
+pkgname=emacs-auto-complete-git
+pkgver=1.0.332.gda86439
+pkgrel=1
+pkgdesc="Auto Complete Mode is the most intelligent auto-completion extension for GNU Emacs."
+url="https://github.com/auto-complete/auto-complete"
+arch=('any')
+license=('GPL3')
+depends=('emacs' 'emacs-popup-el-git')
+makedepends=('git' 'make')
+source=("git://github.com/auto-complete/auto-complete")
+md5sums=('SKIP')
+changelog=CHANGELOG
+install=$pkgname.install
+
+pkgver() {
+		cd auto-complete
+		git describe | sed 's/-/./g;s/v//g'
+}
+
+prepare() {
+		cd auto-complete
+
+		msg2 "Initializing submodules..."
+		git submodule init
+		git submodule update
+}
+
+build() {
+		make -C auto-complete byte-compile
+}
+
+check() {
+		make -C auto-complete test
+}
+
+package() {
+		install -d "$pkgdir/usr/share/emacs/site-lisp/auto-complete"
+		make -C auto-complete DIR="$pkgdir/usr/share/emacs/site-lisp/auto-complete" install
+}
