@@ -1,3 +1,10 @@
+2013-05-11 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+
+	* 0.4.1.24.g8f47c4a-1 :
+	- Merge with upstream
+	- Fix bug where bold color was not being set correctly for
+	  defaultfg
+
 2013-05-06 Chirantan Ekbote <chirantan.ekbote@gmail.com>
 
 	* 0.4.545.8e96873-1 :
@@ -10,4 +17,4 @@
 
 	* 526.b596d6b :
 	- Switch to patch based system for all my changes
-	- Add zeburn color scheme
+	- Add zenburn color scheme

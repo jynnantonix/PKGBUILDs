@@ -20,15 +20,17 @@ source=( "git://git.suckless.org/st"
     0002-Use-2-spaces-for-tabs.patch
     0003-Use-terminus-font.patch
     0004-Use-zsh.patch
-    0005-Emulate-emacs-yank-with-ModMask-y.patch
-    0006-Use-zenburn-colors.patch )
+    0005-Use-zenburn-colors.patch
+    0006-Use-MODKEY-y-to-paste.patch
+    0007-Tag-README-as-a-markdown-file.patch )
 md5sums=('SKIP'
-    '5dd5a2745952f5b9c989f264cd4bf76b'
-    'da6859538e188c8c4c91b9418f46aeca'
-    '69ccb0200f858a03486b9ba107b699d0'
-    '292fcdf9bee584d0284889a272ec4bca'
-    '24f38452e05308ecaf1e9763fe389009'
-    '1c424777d3c83720f4c94e3e7df967cd')
+    '7efe3cdeb537c609940088225c4c2020'
+    '49c8234a9281be80890238dc5908d45c'
+    'e13cb28c48c4313271192bb612de91bd'
+    '09d88bf8e7ddd5ffaf7b66704d8fab0f'
+    'fcdbf8c4d292dd8d58ea894c2f149660'
+    'f07ec97fd716faf43aac7abd56725309'
+    '34b19d5f48579b6644930b25a72e68cc')
 
 pkgver() {
     cd st
@@ -52,5 +54,5 @@ package() {
     cd st
     make PREFIX=/usr DESTDIR="$pkgdir" install
     install -m644 -D LICENSE "$pkgdir/usr/share/licenses/$_pkgname/LICENSE"
-    install -m644 -D README "$pkgdir/usr/share/doc/$_pkgname/README"
+    install -m644 -D README.md "$pkgdir/usr/share/doc/$_pkgname/README"
 }

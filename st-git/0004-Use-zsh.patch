@@ -1,7 +1,7 @@
-From 3690d12b339cd8d8447cf9cc0b5f631dd640d6e2 Mon Sep 17 00:00:00 2001
+From 1c32270702d126bce817cc1cfea0d44da805778a Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Mon, 22 Apr 2013 17:05:39 -0400
-Subject: [PATCH 4/6] Use zsh
+Subject: [PATCH 4/7] Use zsh
 
 ---
  config.def.h | 2 +-
@@ -21,5 +21,5 @@ index ac501e0..53905f7 100644
  /*
   * word delimiter string
 -- 
-1.8.2.2
+1.8.2.3
 

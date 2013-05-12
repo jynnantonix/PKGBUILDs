@@ -1,7 +1,7 @@
-From 772091b1300425daf03710650e6d0f2e8b2c9838 Mon Sep 17 00:00:00 2001
+From 5929acb17a0b1a7d1d7a268512532e83bb1b4280 Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Mon, 22 Apr 2013 17:04:42 -0400
-Subject: [PATCH 2/6] Use 2 spaces for tabs
+Subject: [PATCH 2/7] Use 2 spaces for tabs
 
 ---
  config.def.h | 2 +-
@@ -21,5 +21,5 @@ index 057ea84..2e751ea 100644
  
  /* Terminal colors (16 first used in escape sequence) */
 -- 
-1.8.2.2
+1.8.2.3
 

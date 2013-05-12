@@ -1,7 +1,7 @@
-From efa110aa5baadd5bb05a46e2af16f473795f3f03 Mon Sep 17 00:00:00 2001
+From ce92ffc605636e54197b6a5700e5d2dcb9aa51af Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Mon, 22 Apr 2013 17:05:29 -0400
-Subject: [PATCH 3/6] Use terminus font
+Subject: [PATCH 3/7] Use terminus font
 
 ---
  config.def.h | 2 +-
@@ -21,5 +21,5 @@ index 2e751ea..ac501e0 100644
  static char shell[] = "/bin/sh";
  
 -- 
-1.8.2.2
+1.8.2.3
 

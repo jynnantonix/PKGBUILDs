@@ -1,7 +1,7 @@
-From d28217b7168319bf5d4b69b7a2ff0f3cb6c5860b Mon Sep 17 00:00:00 2001
+From ecf2813e6eb9b6b4252d3bc283ab7e3f71af6341 Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Mon, 22 Apr 2013 17:04:28 -0400
-Subject: [PATCH 1/6] Use control as mod key
+Subject: [PATCH 1/7] Use control as mod key
 
 ---
  config.def.h | 3 +--
@@ -26,5 +26,5 @@ index 2d854a0..057ea84 100644
  };
 -
 -- 
-1.8.2.2
+1.8.2.3
 
