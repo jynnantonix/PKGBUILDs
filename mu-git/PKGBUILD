@@ -1,0 +1,42 @@
+# Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
+# Contributor: Popsch <popsch@gmx.net>
+# Thanks to the maintainers and contributors of the mu binary package
+
+pkgname=mu-git
+pkgver=0.9.9.5.50.g2f60f33
+pkgrel=1
+pkgdesc="mu and mu4e from git"
+arch=('i686' 'x86_64')
+url="http://www.djcbsoftware.nl/code/mu"
+depends=('xapian-core' 'gmime')
+makedepends=('git')
+optdepends=('emacs: required for mu4e')
+license=('GPL')
+provides=('mu')
+conflicts=('mu')
+changelog=CHANGELOG
+install=mu-git.install
+source=("git://github.com/djcb/mu.git")
+md5sums=('SKIP')
+
+pkgver() {
+    cd mu
+    git describe --tags | sed 's/-/./g;s/v//g'
+}
+
+build() {
+    cd mu
+
+    autoreconf -i
+    ./configure --prefix=/usr
+
+    make
+}
+
+check() {
+		make -C mu check
+}
+
+package() {
+    make -C mu DESTDIR="$pkgdir" install
+}
