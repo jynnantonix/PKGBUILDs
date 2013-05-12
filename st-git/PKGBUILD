@@ -3,7 +3,7 @@
 # Contributor: Scytrin dai Kinthra <scytrin@gmail.com>
 
 pkgname=st-git
-pkgver=0.4.545.8e96873
+pkgver=0.4.1.24.g8f47c4a
 pkgrel=1
 pkgdesc='Simple virtual terminal emulator for X'
 url='http://suckless.org/st/'
@@ -32,7 +32,7 @@ md5sums=('SKIP'
 
 pkgver() {
     cd st
-    echo "0.4.$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+    git describe --tags | sed 's/-/./g'
 }
 
 prepare() {
