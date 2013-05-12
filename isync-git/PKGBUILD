@@ -1,0 +1,35 @@
+# Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
+# Contributor: Mark Pustjens <pustjens@dds.nl>
+# Previous Contributor: Geoffroy Carrier <geoffroy.carrier@koon.fr>
+# Previous Contributor: Giorgio Lando <patroclo7@gmail.com>
+# Previous Contributor: Leslie P. Polzer <polzer@gnu.org>
+pkgname=isync-git
+pkgver=1.0.2.215.gad09f23
+pkgrel=1
+pkgdesc="IMAP mail synchronizer for offline/batch mail editing"
+url="http://isync.sourceforge.net/"
+arch=('i686' 'x86_64')
+license=(GPL)
+depends=('openssl')
+makedepends=('perl-timedate')
+changelog=CHANGELOG
+source=("git://isync.git.sourceforge.net/gitroot/isync/isync")
+conflicts=(isync)
+replaces=(isync)
+md5sums=('SKIP')
+
+pkgver() {
+    cd isync
+    git describe --tags | sed 's/-/./g;s/isync_//g;s/_/./g'
+}
+
+build() {
+    cd isync
+    ./autogen.sh
+    ./configure --prefix=/usr
+    make
+}
+
+package() {
+    make -C isync DESTDIR="$pkgdir" install
+}
