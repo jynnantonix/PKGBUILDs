@@ -1,25 +1,25 @@
-From e3acb97dd34ba8a953e28013d58c987b06f97bfa Mon Sep 17 00:00:00 2001
+From 1708d607c63204e97d4725371f5bc7ffb0ed960b Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
-Date: Mon, 22 Apr 2013 17:10:46 -0400
-Subject: [PATCH 5/6] Emulate emacs yank with ModMask-y
+Date: Sat, 11 May 2013 20:00:43 -0400
+Subject: [PATCH 6/7] Use MODKEY-y to paste
 
 ---
  config.def.h | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/config.def.h b/config.def.h
-index 53905f7..5c01a08 100644
+index e869b78..deffb27 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -100,7 +100,7 @@ static Shortcut shortcuts[] = {
+ 	/* modifier		key		function	argument */
  	{ MODKEY|ShiftMask,	XK_Prior,	xzoom,		{.i = +1} },
  	{ MODKEY|ShiftMask,	XK_Next,	xzoom,		{.i = -1} },
- 	{ ShiftMask,		XK_Insert,	selpaste,	{.i =  0} },
--	{ MODKEY|ShiftMask,	XK_Insert,	clippaste,	{.i =  0} },
+-	{ ShiftMask,		XK_Insert,	selpaste,	{.i =  0} },
 +	{ MODKEY,		XK_y,		selpaste,	{.i =  0} },
+ 	{ MODKEY|ShiftMask,	XK_Insert,	clippaste,	{.i =  0} },
  	{ MODKEY,		XK_Num_Lock,	numlock,	{.i =  0} },
  };
- 
 -- 
-1.8.2.2
+1.8.2.3
 
