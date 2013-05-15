@@ -30,15 +30,28 @@ md5sums=('b93435488942486c8d0ca22e8f768034'
          '6fb6606d28082ecb8e0c6d986b0b26aa')
 
 build() {
-  cd "${srcdir}/freetype-${pkgver}"
-  patch -Np1 -i "${srcdir}/freetype-2.2.1-subpixel-disable-quantization.diff"
-  patch -Np0 -i "${srcdir}/bytecode.patch"
-  patch -Np1 -i "${srcdir}/freetype-2.3.0-enable-spr.patch"
-  patch -Np1 -i "${srcdir}/freetype-2.2.1-enable-valid.patch"
-  patch -Np1 -i "${srcdir}/freetype-2.2.1-memcpy-fix.patch"
+prepare() {
+    cd "${srcdir}/freetype-${pkgver}"
 
-  ./configure --prefix=/usr
-  make
+    msg2 "Applying freetype-2.2.1-subpixel-disable-quantization.diff"
+    patch -Np1 -i "${srcdir}/freetype-2.2.1-subpixel-disable-quantization.diff"
+
+    msg2 "Applying bytecode.patch"
+    patch -Np0 -i "${srcdir}/bytecode.patch"
+
+    msg2 "Applying freetype-2.3.0-enable-spr.patch"
+    patch -Np1 -i "${srcdir}/freetype-2.3.0-enable-spr.patch"
+
+    msg2 "Applying freetype-2.2.1-enable-valid.patch"
+    patch -Np1 -i "${srcdir}/freetype-2.2.1-enable-valid.patch"
+
+    msg2 "Applying freetype-2.2.1-memcpy-fix.patch"
+    patch -Np1 -i "${srcdir}/freetype-2.2.1-memcpy-fix.patch"
+}
+build() {
+    cd "${srcdir}/freetype-${pkgver}"
+    ./configure --prefix=/usr
+    make
 }
 
 package() {
