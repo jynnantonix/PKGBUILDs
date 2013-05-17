@@ -1,0 +1,19 @@
+--- scheme48-1.9/Makefile.in.old	2013-05-17 00:44:27.684085970 -0400
++++ scheme48-1.9/Makefile.in	2013-05-17 00:51:13.559169717 -0400
+@@ -526,14 +526,14 @@
+ 	    -e 's,@CC\@,$(CC),g'					\
+ 	    -e 's,@LD\@,$(LD),g'					\
+ 	    -e 's,@DYNAMIC_EXTERNALS_CFLAGS\@,$(DYNAMIC_EXTERNALS_CFLAGS),g' \
+-	    -e 's,@DYNAMIC_EXTERNALS_LDFLAGS\@,$(DYNAMIC_EXTERNALS_LDFLAGS),g' \
++	    -e 's/@DYNAMIC_EXTERNALS_LDFLAGS\@/$(DYNAMIC_EXTERNALS_LDFLAGS)/g' \
+ 	< $(srcdir)/build/$(CONFIG_SCRIPT).in > $$config_script &&	\
+ 	chmod +x $$config_script
+ # install the external modules
+ 	$(INSTALL_PROGRAM) $(EXTERNALS) $(DESTDIR)$(LIB)/
+ # install the documentation
+ 	$(srcdir)/mkinstalldirs $(DESTDIR)$(docdir)
+-	$(INSTALL_DATA) $(srcdir)/COPYING $(docdir)
++	$(INSTALL_DATA) $(srcdir)/COPYING $(DESTDIR)$(docdir)
+
+ install-doc: dirs doc
+ 	$(srcdir)/mkinstalldirs $(DESTDIR)$(docdir)
