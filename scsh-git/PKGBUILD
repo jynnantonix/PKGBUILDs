@@ -1,0 +1,44 @@
+# Contributor: juergen <juergen@archlinux.org>
+# Contributor: Tom Newsom <Jeepster@gmx.co.uk>
+# Contributor: Chris Brannon <cmbrannon79 (@) gmail.com>
+
+pkgname=scsh-git
+pkgver=0.7.224.dcc5368
+pkgrel=1
+pkgdesc="A Unix shell embedded in Scheme"
+url="https://github.com/scheme/scsh"
+arch=('i686' 'x86_64')
+depends=('glibc' 'bash')
+conflicts=('scheme48 >= 1.9')
+install=$pkgname.install
+source=("git://github.com/scheme/scsh"
+		"0001-Fix-Makefile.patch")
+md5sums=('SKIP'
+         '9cd2bd1b5ce8050b8396625d04f86647')
+license=('BSD')
+
+pkgver() {
+    cd scsh
+		echo "0.7.$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+prepare() {
+		cd scsh
+		git submodule update --init
+		git apply "$srcdir/0001-Fix-Makefile.patch"
+}
+
+build() {
+    cd scsh
+		autoreconf
+    ./configure --prefix=/usr --mandir=/usr/share/man
+    make
+}
+
+check() {
+		make -C scsh test
+}
+
+package() {
+    make -C scsh DESTDIR="$pkgdir" PREFIX=/usr install
+}

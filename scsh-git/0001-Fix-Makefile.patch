@@ -1,0 +1,34 @@
+From 987292f2846313ab61a0d629e1c3528a6fec1fe4 Mon Sep 17 00:00:00 2001
+From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
+Date: Fri, 17 May 2013 01:33:58 -0400
+Subject: [PATCH] Fix Makefile
+
+---
+ Makefile.in | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile.in b/Makefile.in
+index c3eac40..5f162dd 100644
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -160,7 +160,7 @@ install: enough dirs install-scsh-image install-scsh
+ install-scsh: scsh
+         #install runner
+ 	$(RM) $(DESTDIR)$(bindir)/$(RUNNABLE)
+-	$(INSTALL_PROGRAM) scsh $(DESTDIR)$(bindir)/$(RUNNABLE)
++	$(INSTALL_PROGRAM) -D scsh $(DESTDIR)$(bindir)/$(RUNNABLE)
+ 
+ 	for file in $(patsubst c/%,%,$(COMPILED_LIBS)) ; do \
+ 	$(INSTALL) c/$$file $(DESTDIR)$(LIB)/$$file ; \
+@@ -171,7 +171,7 @@ install-scsh: scsh
+ 
+ install-scsh-image: install-scsh
+ 	$(srcdir)/build/build-image.sh $(srcdir) \
+-		"$(LIB)/" '$(DESTDIR)$(LIB)/scsh.image' '$(SCHEME48) -h 0' '$(LOADS)'
++		"$(DESTDIR)$(LIB)/" '$(DESTDIR)$(LIB)/scsh.image' '$(SCHEME48) -h 0' '$(LOADS)'
+ 
+ clean:
+ 	rm -rf c/*.o c/*.so c/*.dSYM *.sexpr scsh.image scsh go *.dSYM
+-- 
+1.8.2.3
+
