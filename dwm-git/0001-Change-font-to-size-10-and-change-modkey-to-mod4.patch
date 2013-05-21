@@ -1,7 +1,7 @@
-From a943d6a9090f8449417b592d2e9f345fd1f523dc Mon Sep 17 00:00:00 2001
+From b8f5b80d1c80af0e5a08c9be55abff38fe808d3e Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Thu, 7 Mar 2013 17:19:15 -0500
-Subject: [PATCH 1/7] Change font to size 10 and change modkey to mod4
+Subject: [PATCH 1/4] Change font to size 10 and change modkey to mod4
 
 Signed-off-by: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 ---
@@ -9,7 +9,7 @@ Signed-off-by: Chirantan Ekbote <chirantan.ekbote@gmail.com>
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/config.def.h b/config.def.h
-index 8fd5d4a..7bce89c 100644
+index d300687..4a11f5e 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -1,7 +1,7 @@
@@ -31,5 +31,5 @@ index 8fd5d4a..7bce89c 100644
  	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
  	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 -- 
-1.8.2
+1.8.2.3
 

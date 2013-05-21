@@ -1,7 +1,7 @@
-From 057323321911427fe444c8c6607d994d96f004e2 Mon Sep 17 00:00:00 2001
+From 778a1d2ed95863cdb7f1cbdd6c5ca256585e21b1 Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Thu, 7 Mar 2013 17:21:20 -0500
-Subject: [PATCH 2/7] Append compiler flags instead of overwriting them
+Subject: [PATCH 2/4] Append compiler flags instead of overwriting them
 
 Signed-off-by: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 ---
@@ -9,7 +9,7 @@ Signed-off-by: Chirantan Ekbote <chirantan.ekbote@gmail.com>
  1 file changed, 3 insertions(+), 3 deletions(-)
 
 diff --git a/config.mk b/config.mk
-index 35fd1e3..98e5bfa 100644
+index bc3d80e..7ff347a 100644
 --- a/config.mk
 +++ b/config.mk
 @@ -19,10 +19,10 @@ INCS = -I${X11INC}
@@ -19,13 +19,13 @@ index 35fd1e3..98e5bfa 100644
 -CPPFLAGS = -D_BSD_SOURCE -D_POSIX_C_SOURCE=2 -DVERSION=\"${VERSION}\" ${XINERAMAFLAGS}
 +CPPFLAGS += -D_BSD_SOURCE -D_POSIX_C_SOURCE=2 -DVERSION=\"${VERSION}\" ${XINERAMAFLAGS}
  #CFLAGS   = -g -std=c99 -pedantic -Wall -O0 ${INCS} ${CPPFLAGS}
--CFLAGS   = -std=c99 -pedantic -Wall -Os ${INCS} ${CPPFLAGS}
+-CFLAGS   = -std=c99 -pedantic -Wall -Wno-deprecated-declarations -Os ${INCS} ${CPPFLAGS}
 -LDFLAGS  = -s ${LIBS}
-+CFLAGS   += -std=c99 -pedantic -Wall -Os ${INCS} ${CPPFLAGS}
++CFLAGS   += -std=c99 -pedantic -Wall -Wno-deprecated-declarations -Os ${INCS} ${CPPFLAGS}
 +LDFLAGS  += -s ${LIBS}
  
  # Solaris
  #CFLAGS = -fast ${INCS} -DVERSION=\"${VERSION}\"
 -- 
-1.8.2
+1.8.2.3
 

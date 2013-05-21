@@ -1,5 +1,5 @@
 pkgname=dwm-git
-pkgver=6.0.28.gf2544a3
+pkgver=6.0.32.g7edc596
 pkgrel=1
 pkgdesc="A dynamic window manager for X"
 url="http://dwm.suckless.org"
@@ -13,52 +13,43 @@ provides=('dwm')
 conflicts=('dwm')
 changelog=CHANGELOG
 source=( "git://git.suckless.org/dwm"
-  0001-Change-font-to-size-10-and-change-modkey-to-mod4.patch
-  0002-Append-compiler-flags-instead-of-overwriting-them.patch
-  0003-Don-t-show-the-status-bar-on-startup.patch
-  0004-Use-st-with-tmux-as-default-terminal.patch
-  0005-Change-tag-names-to-common-applications.patch
-  0006-Compile-with-icc.patch
-  0007-Make-border-color-black-add-volume-control-options.patch
-  dwm.desktop)
+    0001-Change-font-to-size-10-and-change-modkey-to-mod4.patch
+    0002-Append-compiler-flags-instead-of-overwriting-them.patch
+    0003-Don-t-show-the-status-bar-on-startup.patch
+    0004-Make-border-color-black-add-volume-control-options.patch
+    dwm.desktop)
 md5sums=('SKIP'
-         '84564bfd8b21df4ce87e0fc43a2d0f94'
-         '7e88e657ba62a464d1ece9d87c1b5f0b'
-         'e506d1bb34976671254ea101f451645e'
-         '9b7b9007e732744ff55b3c3fe83dd844'
-         'b80bde491a14707e8797886079a973fa'
-         'a8df54ea770d898b122d58f450e52979'
-         'f1eb2e565072beaf72b9ea3dcf5500eb'
-         '939f403a71b6e85261d09fc3412269ee')
+    'a945a06c290d38df7941277b89fe147c'
+    '6dc8970048f626af3316040acda036ac'
+    '7763100e9624b3d00e292c6972f4b4e2'
+    'be0b8fe8c8b78de359f6c4bca346f45c'
+    '939f403a71b6e85261d09fc3412269ee')
 
 pkgver() {
-	cd dwm
-	git describe --tags | sed 's|-|.|g'
+    cd dwm
+    git describe --tags | sed 's|-|.|g'
 }
 
 prepare() {
-	cd dwm
-  msg "Applying patches..."
-  git apply "$srcdir/0001-Change-font-to-size-10-and-change-modkey-to-mod4.patch"
-  git apply "$srcdir/0002-Append-compiler-flags-instead-of-overwriting-them.patch"
-  git apply "$srcdir/0003-Don-t-show-the-status-bar-on-startup.patch"
-  git apply "$srcdir/0004-Use-st-with-tmux-as-default-terminal.patch"
-  git apply "$srcdir/0005-Change-tag-names-to-common-applications.patch"
-  #git apply "$srcdir/0006-Compile-with-icc.patch"
-  git apply "$srcdir/0007-Make-border-color-black-add-volume-control-options.patch"
+    cd dwm
+
+    for f in $(find ../ -name '*.patch' | sort); do
+	msg2 "Applying $f"
+	git apply "$f"
+    done
 }
 
 build() {
-	cd dwm
-  make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+    cd dwm
+    make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
 }
 
 package() {
-	cd dwm
-  make PREFIX=/usr DESTDIR="$pkgdir" install
-  install -m644 -D LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
-  install -m644 -D README "$pkgdir/usr/share/doc/$pkgname/README"
-  install -m644 -D "$srcdir/dwm.desktop" "$pkgdir/usr/share/xsessions/dwm.desktop"
+    cd dwm
+    make PREFIX=/usr DESTDIR="$pkgdir" install
+    install -m644 -D LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+    install -m644 -D README "$pkgdir/usr/share/doc/$pkgname/README"
+    install -m644 -D "$srcdir/dwm.desktop" "$pkgdir/usr/share/xsessions/dwm.desktop"
 }
 
 # vim:set ts=2 sw=2 et:

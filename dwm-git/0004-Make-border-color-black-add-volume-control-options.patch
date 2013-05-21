@@ -1,14 +1,14 @@
-From e5034395fcfebc72124795505154e5aff4ffdee1 Mon Sep 17 00:00:00 2001
+From d162b92cc19889fb65da90bb1cb5d8dccbc69549 Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Wed, 27 Mar 2013 14:51:16 -0400
-Subject: [PATCH 7/7] Make border color black, add volume control options
+Subject: [PATCH 4/4] Make border color black, add volume control options
 
 ---
  config.def.h | 9 +++++++--
  1 file changed, 7 insertions(+), 2 deletions(-)
 
 diff --git a/config.def.h b/config.def.h
-index d15845e..f9d844c 100644
+index 19498f0..2520b12 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -5,7 +5,7 @@ static const char font[]            = "-*-terminus-medium-r-*-*-10-*-*-*-*-*-*-*
@@ -23,7 +23,7 @@ index d15845e..f9d844c 100644
 @@ -52,6 +52,9 @@ static const Layout layouts[] = {
  /* commands */
  static const char *dmenucmd[] = { "dmenu_run", "-fn", font, "-nb", normbgcolor, "-nf", normfgcolor, "-sb", selbgcolor, "-sf", selfgcolor, NULL };
- static const char *termcmd[]  = { "st", "-e", "tmux", NULL };
+ static const char *termcmd[]  = { "st", "-f", font, NULL };
 +static const char *mutecmd[] = { "amixer", "set", "Master", "toggle", NULL };
 +static const char *raisevolumecmd[] = { "amixer", "set", "Master", "5%+", NULL };
 +static const char *lowervolumecmd[] = { "amixer", "set", "Master", "5%-", NULL };
@@ -34,9 +34,9 @@ index d15845e..f9d844c 100644
  	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
  	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
  	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-+	{ 0,														0x1008ff12,spawn,					 {.v = mutecmd } },
-+	{ 0,														0x1008ff11,spawn,					 {.v = lowervolumecmd } },
-+	{ 0,														0x1008ff13,spawn,					 {.v = raisevolumecmd } },
++	{ 0,                            0x1008ff12,spawn,          {.v = mutecmd } },
++	{ 0,                            0x1008ff11,spawn,          {.v = lowervolumecmd } },
++	{ 0,                            0x1008ff13,spawn,          {.v = raisevolumecmd } },
  	TAGKEYS(                        XK_1,                      0)
  	TAGKEYS(                        XK_2,                      1)
  	TAGKEYS(                        XK_3,                      2)
@@ -46,5 +46,5 @@ index d15845e..f9d844c 100644
  };
 -
 -- 
-1.8.2
+1.8.2.3
 

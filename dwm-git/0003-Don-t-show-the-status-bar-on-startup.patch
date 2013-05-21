@@ -1,7 +1,7 @@
-From addb8bc4c0d9bcac87b6a41b478455f864c90e0e Mon Sep 17 00:00:00 2001
+From aa67b4f8681c310451c6926cccd073a9609cfa68 Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Sat, 9 Mar 2013 14:58:00 -0500
-Subject: [PATCH 3/7] Don't show the status bar on startup
+Subject: [PATCH 3/4] Don't show the status bar on startup
 
 Signed-off-by: Chirantan Ekbote <chirantan.ekbtoe@gmail.com>
 ---
@@ -9,7 +9,7 @@ Signed-off-by: Chirantan Ekbote <chirantan.ekbtoe@gmail.com>
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/config.def.h b/config.def.h
-index 7bce89c..02739cd 100644
+index 4a11f5e..19498f0 100644
 --- a/config.def.h
 +++ b/config.def.h
 @@ -10,7 +10,7 @@ static const char selbgcolor[]      = "#005577";
@@ -22,5 +22,5 @@ index 7bce89c..02739cd 100644
  
  /* tagging */
 -- 
-1.8.2
+1.8.2.3
 
