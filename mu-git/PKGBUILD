@@ -3,12 +3,12 @@
 # Thanks to the maintainers and contributors of the mu binary package
 
 pkgname=mu-git
-pkgver=0.9.9.5.50.g2f60f33
+pkgver=0.9.9.5.83.g10b64bb
 pkgrel=1
 pkgdesc="mu and mu4e from git"
 arch=('i686' 'x86_64')
 url="http://www.djcbsoftware.nl/code/mu"
-depends=('xapian-core' 'gmime')
+depends=('xapian-core' 'gmime' 'guile>=2.0')
 makedepends=('git')
 optdepends=('emacs: required for mu4e')
 license=('GPL')
@@ -16,12 +16,20 @@ provides=('mu')
 conflicts=('mu')
 changelog=CHANGELOG
 install=mu-git.install
-source=("git://github.com/djcb/mu.git")
-md5sums=('SKIP')
+source=("git://github.com/djcb/mu.git"
+    0001-Drop-misplaced-braces.patch)
+md5sums=('SKIP'
+    '03b59dc8e75fa744afa2df49b600f92b')
 
 pkgver() {
     cd mu
     git describe --tags | sed 's/-/./g;s/v//g'
+}
+
+prepare() {
+    cd mu
+    msg2 "Applying 0001-Drop-misplaced-braces.patch"
+    git apply "$srcdir/0001-Drop-misplaced-braces.patch"
 }
 
 build() {
@@ -34,7 +42,7 @@ build() {
 }
 
 check() {
-		make -C mu check
+    make -C mu check
 }
 
 package() {
