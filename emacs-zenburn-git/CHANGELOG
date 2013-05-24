@@ -1,3 +1,8 @@
+2013-05-23 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+
+	* 2.0.22.g171a36d-1 :
+	- Add patches with customizations
+
 2013-03-31 Chirantan Ekbote <chirantan.ekbote@gmail.com>
 	* 20130331:
 	Initial package with bbatsov's tree

@@ -1,10 +1,8 @@
 # Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
 # Contributor: listdata <linusarver <at> gmail <dot> com>
 pkgname=emacs-zenburn-git
-pkgver=20130331
+pkgver=2.0.22.g171a36d
 pkgrel=1
-_gitname="zenburn-el"
-_gitroot="git://github.com/bbatsov/zenburn-emacs.git"
 pkgdesc="The zenburn color theme for GNU Emacs"
 arch=('any')
 url="https://github.com/bbatsov/zenburn-emacs"
@@ -15,25 +13,28 @@ changelog=CHANGELOG
 provides=('emacs-zenburn')
 conflicts=('emacs-zenburn')
 install=$pkgname.install
+source=('git://github.com/bbatsov/zenburn-emacs.git'
+		'0001-Remove-whitespace-mode-colors.patch'
+		'0002-Differentiate-subdirs-from-first-match-in-ido.patch')
+md5sums=('SKIP'
+    'c465e63de6ad76de08c10b2106b37364'
+    '36b6b6861fb91be94745daabba6cea5d')
 
-build() {
-  msg "Connecting to GIT server...."
+pkgver() {
+	cd zenburn-emacs
+	git describe --tags | sed 's/-/./g;s/v//'
+}
 
-  if [[ -d $_gitname ]] ; then
-    cd "$_gitname" && git pull origin
-    msg "The local files are updated."
-  else
-    git clone "$_gitroot" "$_gitname"
-  fi
+prepare() {
+	cd zenburn-emacs
 
-  msg "GIT checkout done or server timeout"
-  msg "Starting make..."
-
-  rm -rf "$srcdir/$_gitname-build"
-  cp -r "$srcdir/$_gitname" "$srcdir/$_gitname-build"
+	for p in $(find ../ -name '*.patch'); do
+			msg2 "Applying $p..."
+			git apply $p
+	done
 }
 
 package() {
-	cd "$srcdir/$_gitname-build"
+  cd zenburn-emacs
   install -Dm644 zenburn-theme.el	"$pkgdir/usr/share/emacs/site-lisp/zenburn-theme.el"
 }
