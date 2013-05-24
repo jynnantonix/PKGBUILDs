@@ -1,0 +1,27 @@
+#!/bin/bash
+
+post_install()
+{
+	source /etc/profile
+
+	echo ""
+	echo ">>>> Please note that these tools and some related projects (for example "
+	echo ">>>> ChromeOS) use python2.  They assume that python2 is the default "
+	echo ">>>> python interpreter. The ArchLinux default is python3, so be prepared "
+	echo ">>>> to fix python references in your work."
+	echo ""
+	echo ">>>> This package contains a repo_fix.sh script. Use it to fix python2"
+	echo ">>>> references in python scripts created after the 'repo init' command"
+	echo ""
+	echo ">>>> For getting started with depot_tools, visit this page: "
+	echo ">>>>     http://dev.chromium.org/developers/how-tos/depottools"
+	echo ""
+	echo ">>>> Run 'source /etc/profile' if you don't find any depot_tools related commands."
+}
+
+post_upgrade()
+{
+	source /etc/profile
+
+	echo ">>>> Run 'source /etc/profile' if you don't find any depot_tools related commands."
+}
