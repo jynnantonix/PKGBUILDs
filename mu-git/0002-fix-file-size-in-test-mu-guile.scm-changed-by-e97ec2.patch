@@ -1,0 +1,26 @@
+From 16d56f1576f1437e63d6f55a95329c0fc0721de4 Mon Sep 17 00:00:00 2001
+From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
+Date: Tue, 28 May 2013 22:46:09 -0700
+Subject: [PATCH 2/2] fix file size in test-mu-guile.scm changed by e97ec2d5
+
+Signed-off-by: Chirantan Ekbote <chirantan.ekbote@gmail.com>
+---
+ guile/tests/test-mu-guile.scm | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/guile/tests/test-mu-guile.scm b/guile/tests/test-mu-guile.scm
+index 2ebfa22..58522fe 100755
+--- a/guile/tests/test-mu-guile.scm
++++ b/guile/tests/test-mu-guile.scm
+@@ -97,7 +97,7 @@ exec guile -e main -s $0 $@
+ (define (test-stats)
+   "Test statistical functions."
+   ;; average
+-  (num-equal-or-exit (mu:average mu:size) 82132/13)
++  (num-equal-or-exit (mu:average mu:size) 82152/13)
+   (num-equal-or-exit (floor (mu:stddev mu:size)) 13020.0)
+   (num-equal-or-exit (mu:max mu:size) 46308)
+   (num-equal-or-exit (mu:min mu:size) 111))
+-- 
+1.8.3
+

@@ -1,0 +1,26 @@
+From 3c65b7afb03a6aeb3ddee17e2e7b316873fbc48b Mon Sep 17 00:00:00 2001
+From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
+Date: Tue, 21 May 2013 14:42:03 -0400
+Subject: [PATCH 1/2] Drop misplaced braces
+
+Signed-off-by: Chirantan Ekbote <chirantan.ekbote@gmail.com>
+---
+ guile/mu-guile.texi | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/guile/mu-guile.texi b/guile/mu-guile.texi
+index 21c98c6..2b13200 100644
+--- a/guile/mu-guile.texi
++++ b/guile/mu-guile.texi
+@@ -28,7 +28,7 @@ Documentation License.''
+ 
+ @titlepage
+ @title @t{mu-guile} - extending @t{mu} with Guile Scheme
+-@subtitle{version  @value{mu-version}}
++@subtitle version  @value{mu-version}
+ @author Dirk-Jan C. Binnema
+ 
+ @c The following two commands start the copyright page.
+-- 
+1.8.3
+

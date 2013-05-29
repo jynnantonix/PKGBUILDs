@@ -1,3 +1,8 @@
+2013-05-27 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+
+	* 0.9.9.5.110.g08748f2-1 :
+	- Rebuild triggered by new libguile
+
 2013-05-21 Chirantan Ekbote <chirantan.ekbote@gmail.com>
 
 	* 0.9.9.5.83.g10b64bb-1 :
