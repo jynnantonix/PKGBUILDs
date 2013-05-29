@@ -20,7 +20,7 @@ makedepends=('git' 'scons' 'setconf')
 provides=('depot_tools' 'gclient')
 conflicts=('gclient-svn')
 md5sums=('SKIP'
-    'bfbabdaef2cb6599e4dc385dc16541bc'
+		'2f4cd830bcf2b4f2e6d0ff2f180fae94'
     'fb0c546a078c312aa64c1f2a31599557')
 install="depot_tools.install"
 

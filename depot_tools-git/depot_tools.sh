@@ -1,1 +1,1 @@
-export PATH="$PATH":/opt/depot_tools-svn
+export PATH="$PATH":/opt/depot_tools
