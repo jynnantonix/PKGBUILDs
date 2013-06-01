@@ -3,7 +3,7 @@
 # Thanks to the maintainers and contributors of the mu binary package
 
 pkgname=mu-git
-pkgver=0.9.9.5.110.g08748f2
+pkgver=0.9.9.5.113.gb136ca0
 pkgrel=1
 pkgdesc="mu and mu4e from git"
 arch=('i686' 'x86_64')
@@ -17,11 +17,10 @@ conflicts=('mu')
 changelog=CHANGELOG
 install=mu-git.install
 source=("git://github.com/djcb/mu.git"
-    0001-Drop-misplaced-braces.patch
-    0002-fix-file-size-in-test-mu-guile.scm-changed-by-e97ec2.patch)
+    0001-Drop-misplaced-braces.patch)
+
 md5sums=('SKIP'
-    '948578c42c79ef447b974ff220b3a4e5'
-    'bf10877fcdf0b4d3883bb86ea6a7f045')
+    '948578c42c79ef447b974ff220b3a4e5')
 
 pkgver() {
     cd mu
