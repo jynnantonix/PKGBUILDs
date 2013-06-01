@@ -1,3 +1,8 @@
+2013-06-01 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+
+	* 1.5.0.6.gc414b68-1 :
+	- Move mbpfan executable from /usr/sbin -> /usr/bin
+
 2013-04-07 Chirantan Ekbote <chirantan.ekbote@gmail.com>
 
 	* 20130407 :

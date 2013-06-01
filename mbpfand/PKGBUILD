@@ -2,7 +2,7 @@
 # Contributor: Allan McRae <allan@archlinux.org>
 
 pkgname=mbpfand
-pkgver=1.5.0.5.g85cd994
+pkgver=1.5.0.6.gc414b68
 pkgrel=1
 pkgdesc="Automatically adjust the fan on a MacBook Pro"
 arch=('i686' 'x86_64')
@@ -19,7 +19,7 @@ md5sums=('SKIP')
 
 pkgver() {
 	cd 'mbpfan'
-	git describe --always | sed 's/-/./g;s/v\.//g'
+	git describe | sed 's/-/./g;s/v\.//g'
 }
 
 build() {
