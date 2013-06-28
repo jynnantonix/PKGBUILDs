@@ -3,7 +3,7 @@
 # Thanks to the maintainers and contributors of the mu binary package
 
 pkgname=mu-git
-pkgver=0.9.9.5.113.gb136ca0
+pkgver=0.9.9.5.166.g7fe3733
 pkgrel=1
 pkgdesc="mu and mu4e from git"
 arch=('i686' 'x86_64')
@@ -16,24 +16,13 @@ provides=('mu')
 conflicts=('mu')
 changelog=CHANGELOG
 install=mu-git.install
-source=("git://github.com/djcb/mu.git"
-    0001-Drop-misplaced-braces.patch)
+source=("git://github.com/djcb/mu.git")
 
-md5sums=('SKIP'
-    '948578c42c79ef447b974ff220b3a4e5')
+md5sums=('SKIP')
 
 pkgver() {
     cd mu
     git describe --tags | sed 's/-/./g;s/v//g'
-}
-
-prepare() {
-    cd mu
-
-    for p in $(find ../ -name '*.patch' | sort); do
-	msg2 "Applying $p..."
-	git apply "$p"
-    done
 }
 
 build() {
