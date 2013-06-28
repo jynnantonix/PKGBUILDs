@@ -1,0 +1,71 @@
+From 472c2fdc964cf66ca7200b136e1d2c4adb4d850f Mon Sep 17 00:00:00 2001
+From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
+Date: Thu, 27 Jun 2013 22:31:57 -0700
+Subject: [PATCH 6/7] Add windows above selected window
+
+---
+ dwm.c | 20 +++++++++++++++++---
+ 1 file changed, 17 insertions(+), 3 deletions(-)
+
+diff --git a/dwm.c b/dwm.c
+index c4fa040..c85391e 100644
+--- a/dwm.c
++++ b/dwm.c
+@@ -146,6 +146,7 @@ static Bool applysizehints(Client *c, int *x, int *y, int *w, int *h, Bool inter
+ static void arrange(Monitor *m);
+ static void arrangemon(Monitor *m);
+ static void attach(Client *c);
++static void attachabove(Client *c);
+ static void attachstack(Client *c);
+ static void buttonpress(XEvent *e);
+ static void checkotherwm(void);
+@@ -400,6 +401,19 @@ attach(Client *c) {
+ }
+ 
+ void
++attachabove(Client *c) {
++	if (c->mon->sel == NULL || c->mon->sel == c->mon->clients || c->mon->sel->isfloating) {
++		attach(c);
++		return;
++	}
++
++	Client *at;
++	for (at = c->mon->clients; at->next != c->mon->sel; at = at->next);
++	c->next = at->next;
++	at->next = c;
++}
++
++void
+ attachstack(Client *c) {
+ 	c->snext = c->mon->stack;
+ 	c->mon->stack = c;
+@@ -1051,7 +1065,7 @@ manage(Window w, XWindowAttributes *wa) {
+ 		c->isfloating = c->oldstate = trans != None || c->isfixed;
+ 	if(c->isfloating)
+ 		XRaiseWindow(dpy, c->win);
+-	attach(c);
++	attachabove(c);
+ 	attachstack(c);
+ 	XChangeProperty(dpy, root, netatom[NetClientList], XA_WINDOW, 32, PropModeAppend,
+ 	                (unsigned char *) &(c->win), 1);
+@@ -1383,7 +1397,7 @@ sendmon(Client *c, Monitor *m) {
+ 	detachstack(c);
+ 	c->mon = m;
+ 	c->tags = m->tagset[m->seltags]; /* assign tags of target monitor */
+-	attach(c);
++	attachabove(c);
+ 	attachstack(c);
+ 	focus(NULL);
+ 	arrange(NULL);
+@@ -1815,7 +1829,7 @@ updategeom(void) {
+ 					m->clients = c->next;
+ 					detachstack(c);
+ 					c->mon = mons;
+-					attach(c);
++					attachabove(c);
+ 					attachstack(c);
+ 				}
+ 				if(m == selmon)
+-- 
+1.8.3.1
+

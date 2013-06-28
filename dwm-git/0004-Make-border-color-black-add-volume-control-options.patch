@@ -1,7 +1,7 @@
-From d162b92cc19889fb65da90bb1cb5d8dccbc69549 Mon Sep 17 00:00:00 2001
+From 8f2155121224db3cffe510d016c8d6aed50c3cc5 Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Wed, 27 Mar 2013 14:51:16 -0400
-Subject: [PATCH 4/4] Make border color black, add volume control options
+Subject: [PATCH 4/7] Make border color black, add volume control options
 
 ---
  config.def.h | 9 +++++++--
@@ -46,5 +46,5 @@ index 19498f0..2520b12 100644
  };
 -
 -- 
-1.8.2.3
+1.8.3.1
 

@@ -1,7 +1,7 @@
-From b8f5b80d1c80af0e5a08c9be55abff38fe808d3e Mon Sep 17 00:00:00 2001
+From c0ee259b41d66669c2609137026fd72041fcbc07 Mon Sep 17 00:00:00 2001
 From: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 Date: Thu, 7 Mar 2013 17:19:15 -0500
-Subject: [PATCH 1/4] Change font to size 10 and change modkey to mod4
+Subject: [PATCH 1/7] Change font to size 10 and change modkey to mod4
 
 Signed-off-by: Chirantan Ekbote <chirantan.ekbote@gmail.com>
 ---
@@ -31,5 +31,5 @@ index d300687..4a11f5e 100644
  	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
  	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
 -- 
-1.8.2.3
+1.8.3.1
 

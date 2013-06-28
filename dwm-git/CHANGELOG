@@ -1,3 +1,11 @@
+2013-06-27 Chirantan Ekbote <chirantan.ekbote@gmail.com>
+
+	* 6.0.35.gb800a1d-1 :
+	- Merge with upstream
+	- Only focus on mouse click
+	- Add new windows above currently selected window rather than
+	always making them the new master
+
 2013-05-21 Chirantan Ekbote <chirantan.ekbote@gmail.com>
 
 	* 6.0.32.g7edc596 :

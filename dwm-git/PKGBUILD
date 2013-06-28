@@ -1,5 +1,5 @@
 pkgname=dwm-git
-pkgver=6.0.32.g7edc596
+pkgver=6.0.35.gb800a1d
 pkgrel=1
 pkgdesc="A dynamic window manager for X"
 url="http://dwm.suckless.org"
@@ -17,13 +17,19 @@ source=( "git://git.suckless.org/dwm"
     0002-Append-compiler-flags-instead-of-overwriting-them.patch
     0003-Don-t-show-the-status-bar-on-startup.patch
     0004-Make-border-color-black-add-volume-control-options.patch
+    0005-Only-change-focus-on-mouse-click.patch
+    0006-Add-windows-above-selected-window.patch
+    0007-Revert-Only-change-focus-on-mouse-click.patch
     dwm.desktop)
 md5sums=('SKIP'
-    'a945a06c290d38df7941277b89fe147c'
-    '6dc8970048f626af3316040acda036ac'
-    '7763100e9624b3d00e292c6972f4b4e2'
-    'be0b8fe8c8b78de359f6c4bca346f45c'
-    '939f403a71b6e85261d09fc3412269ee')
+         'ad726d5f5e25866d65f2a8f732defb96'
+         '44c2e990c8cb886441c73c9340a28997'
+         '01e9e047735edf8e02507384233a867b'
+         '8fe2c3c9e8a6f928c5e0de7b134e0c3d'
+         '207a8bf7acb2e8142e5dd5472f24a39b'
+         '412000f7ac84a422edd03e66ee450981'
+         'b9e2d3de53fab7668826089bd69a7d7d'
+         '939f403a71b6e85261d09fc3412269ee')
 
 pkgver() {
     cd dwm
@@ -34,8 +40,8 @@ prepare() {
     cd dwm
 
     for f in $(find ../ -name '*.patch' | sort); do
-	msg2 "Applying $f"
-	git apply "$f"
+        msg2 "Applying $f"
+        git apply "$f"
     done
 }
 
