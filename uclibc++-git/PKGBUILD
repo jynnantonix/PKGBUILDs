@@ -1,0 +1,31 @@
+# Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
+# Contributor: Bartek Piotrowski <barthalion@gmail.com>
+# Contributor: Jens Staal <staal1978@gmail.com>
+
+pkgname=uclibc++-git
+pkgver=0.2.4.7.g03028c2
+pkgrel=1
+pkgdesc='C++ standard library targeted towards the embedded systems/software market'
+arch=('i686' 'x86_64')
+license=('LGPL')
+url="http://cxx.uclibc.org/"
+depends=('gcc-libs')
+makedepends=('git')
+conflicts=('uclibc++')
+source=("git://git.busybox.net/uClibc++")
+md5sums=('SKIP')
+
+pkgver() {
+	cd uClibc++
+	git describe | sed 's/-/./g;s/v//'
+}
+
+build() {
+       cd uClibc++
+       make menuconfig
+       make
+}
+
+package() {
+    make -C uClibc++ PREFIX="$pkgdir" install
+}

@@ -1,0 +1,25 @@
+# Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
+# Contributor: Bartek Piotrowski <barthalion@gmail.com>
+
+pkgname=uclibc++
+_pkgname=${pkgname/c/C}
+pkgver=0.2.4
+pkgrel=1
+pkgdesc='C++ standard library targeted towards the embedded systems/software market'
+arch=('i686' 'x86_64')
+license=('LGPL')
+url='http://cxx.uclibc.org/'
+depends=('gcc-libs')
+source=(http://cxx.uclibc.org/src/$_pkgname-$pkgver.tar.xz)
+md5sums=('d35d73d2de317c239e7526bd369b31d7')
+
+build() {
+  cd "$srcdir/$_pkgname-$pkgver"
+  make menuconfig
+  make
+}
+
+package() {
+  cd "$srcdir/$_pkgname-$pkgver"
+  make PREFIX="$pkgdir" install
+}
