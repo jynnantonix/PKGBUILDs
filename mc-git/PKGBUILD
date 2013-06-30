@@ -3,7 +3,7 @@
 # Contributor: Tsekhovoy Eugene aka Krash <8552246@gmail.com>
 
 pkgname=mc-git
-pkgver=4.8.8.11.gf1376d4
+pkgver=4.8.8.71.g90209d3
 pkgrel=1
 pkgdesc='GNU Midnight Commander is an s-lang based file manager'
 url='https://midnight-commander.org/'
@@ -40,7 +40,7 @@ build() {
 	--with-vfs                  \
 	--with-edit                 \
 	--with-screen=slang         \
-	--without-x                 \
+	--with-x                    \
 	--without-samba             \
 	--without-gpm-mouse         \
 	--without-gnome             \
