@@ -7,7 +7,7 @@
 # Contributor: hack.augusto <hack.augusto@gmail.com>
 
 pkgname=depot_tools-git
-pkgver=0.1826.g41da24b
+pkgver=0.1860.g0477f8c
 pkgrel=1
 pkgdesc='Build tools for working with Chromium development, include gclient'
 arch=('any')
