@@ -1,0 +1,29 @@
+# Maintainer: Chirantan Ekbote <chirantan.ekbote at gmail.com>
+# Contributor: anergy <anergy.25110321@gmail.com>
+pkgname=emacs-popwin-git
+pkgver=0.6.2.1.gb6ac46b
+pkgrel=1
+pkgdesc="Popup Window Manager for Emacs"
+arch=(any)
+url="https://github.com/m2ym/popwin-el"
+license=('GPL')
+depends=('emacs')
+makedepends=('git')
+provides=(emacs-popwin)
+conflicts=(emacs-popwin)
+install=emacs-popwin.install
+source=("git://github.com/m2ym/popwin-el")
+md5sums=('SKIP')
+
+pkgver() {
+  cd popwin-el
+  git describe --tags | sed 's/-/./g;s/v//'
+}
+
+package() {
+  cd popwin-el
+  install -Dm644 popwin.el "${pkgdir}/usr/share/emacs/site-lisp/popwin/popwin.el"
+  install -m644 misc/*.el "${pkgdir}/usr/share/emacs/site-lisp/popwin"
+}
+
+# vim:set ts=2 sw=2 et:
